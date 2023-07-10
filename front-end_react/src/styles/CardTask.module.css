@@ -1,0 +1,60 @@
+.CardTask {
+    display: flex;
+    flex: 1 1 auto;
+    align-items: center;
+    flex-direction: column;
+    margin: 3rem auto;
+    width: 22rem;
+    height: 12rem;
+    border-radius: 0.5rem;
+    background: #F1F2F4;
+    overflow: hidden;
+}
+
+.secondMainCardTask {
+  background: #FFF;
+  padding: 1rem;
+  border-radius: 1rem;
+}
+
+.cardHeader {
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.mainCardHeader {
+    display: flex;
+    justify-content: space-between;
+}
+
+.containerButton button {
+  border: none;
+  padding: 0.5rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.containerDescription div {
+  width: 19rem;
+}
+
+.containerTitle textarea {
+  padding: 0.5rem;
+
+  font-size: 1.2rem;
+  overflow: hidden;
+  overflow-wrap: break-word;
+  height: 1.25rem;
+  border: none;
+  width: 100%;
+}
+
+.cardFooter {
+  display: flex;
+  align-items: end;
+}
+
+.contentAddTask {
+  display: flex;
+  align-items: flex-end;
+}

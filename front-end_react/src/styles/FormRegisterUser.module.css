@@ -1,0 +1,112 @@
+:root {
+  --white: #fff;
+  --black: #111;
+  --gray: #D5D5D5;
+}
+
+.containerLimitWidth {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 13rem auto;
+  flex: 1 1 auto;
+  flex-wrap: wrap;
+  min-height: 25rem; /* 400px */
+  width: 25rem; /* 400px */
+  box-sizing: border-box;
+  filter: drop-shadow(0.5rem 0.5rem 0.5rem #111);
+}
+
+.sectionFormUser {
+  background: var(--white);
+  border-radius: 1rem;
+  width: 100%;
+}
+
+.Title {
+  margin: 1rem;
+  font-size: 2rem;
+  text-align: center;
+}
+
+.contentLogin {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1 1 auto;
+  width: 100%;
+}
+
+.containerEmail,
+.containerPassword,
+.containerButtonSubmit {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  flex: 1;
+  position: relative;
+}
+
+.containerEmail label,
+.containerPassword label {
+  margin: 0 0 0.3rem 1rem;
+}
+
+::placeholder{
+    font-size: 1rem;
+    position: absolute;
+    font-size: 14px;
+    transition: 0.3s;
+    pointer-events: none;
+}
+
+.containerEmail input,
+.containerPassword input {
+  padding: 0.6rem;
+  font-size: 0.9rem;
+  margin: 1rem;
+  border: none;
+  border-bottom: 0.1rem solid var(--black);
+  outline: none;
+}
+
+.containerEmail input:focus,
+.containerPassword input:focus {
+  transition: 0.1 ;
+  color: var(--black);
+  position: relative;
+}
+
+input::placeholder:focus {
+    position: absolute;
+    top: 10px;
+    left: 20px;
+}
+
+.containerButtonSubmit button {
+  padding: 0.6rem;
+  font-size: 0.9rem;
+  margin: 1rem;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease;
+  background-color: #d5d5d5;
+  color: #111;
+  border: none;
+}
+
+.containerButtonSubmit button:hover {
+  box-shadow: 0 0 1.25rem 0 rgba(50, 30, 0, 0.5);
+}
+
+.containerRememberPassword {
+  display: flex;
+  justify-content: center;
+  margin: 1rem;
+}
+
+.containerRememberPassword a {
+  text-decoration: none;
+  margin: 0 0 0 0.1rem;
+  color: #0000ff;
+}
