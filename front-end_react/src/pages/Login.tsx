@@ -1,7 +1,36 @@
+import React, { useState } from "react";
 import styles from "../styles/FormLoginUser.module.css";
 import { Helmet } from "react-helmet";
 
 const LoginPage = () => {
+  const [emailInputValue, setEmailInputValue] = useState("");
+  const [passwordInputValue, setPasswordInputValue] = useState("");
+  const [isEmailFocused, setIsEmailFocused] = useState(false);
+  const [isPasswordFocused, setIsPasswordFocused] = useState(false);
+
+  const handleEmailInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value;
+    setEmailInputValue(value);
+  };
+  
+  const handlePasswordInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value;
+    setPasswordInputValue(value);
+  }
+
+  const handleEmailInputFocus = () => {
+    setIsEmailFocused(true);
+  };
+  
+  const handlePasswordInputFocus = () => {
+    setIsPasswordFocused(true);
+  }
+
+  const handleInputBlur = () => {
+    setIsEmailFocused(false);
+    setIsPasswordFocused(false);
+  };
+
   return (
     <>
       <Helmet>
@@ -27,26 +56,45 @@ const LoginPage = () => {
                 action="#"
               >
                 <div className={styles.containerEmail}>
-                  <label htmlFor="email">Email</label>
+                  <label
+                    htmlFor="email"
+                    className={`${styles.labelInput} ${
+                      isEmailFocused || emailInputValue !== ""
+                        ? styles.labelInputFocus
+                        : ""
+                    }`}
+                  >
+                    Email
+                  </label>
                   <input
                     type="email"
-                    id="email"
+                    id="emailUser"
                     className="campo"
                     name="email"
-                    placeholder="E-mail"
+                    value={emailInputValue}
+                    onChange={handleEmailInputChange}
+                    onFocus={handleEmailInputFocus}
+                    onBlur={handleInputBlur}
                     required
                   />
                 </div>
 
                 <div className={styles.containerPassword}>
-                  <label htmlFor="password">Password</label>
+                  <label htmlFor="password"
+                  className={`${styles.labelInput} ${
+                    isPasswordFocused || passwordInputValue !== ""
+                      ? styles.labelInputFocus
+                      : ""
+                  }`}>Password</label>
                   <input
                     type="password"
                     id="password"
                     className="campo"
                     name="senha"
-                    placeholder="Password"
                     minLength={8}
+                    onChange={handlePasswordInputChange}
+                    onFocus={handlePasswordInputFocus}
+                    onBlur={handleInputBlur}
                     required
                   />
                 </div>
@@ -57,7 +105,9 @@ const LoginPage = () => {
                 </div>
               </form>
               <div className={styles.containerRememberPassword}>
-                <span>Não tem conta? <a href="/registrar">Cadastre-se</a></span>
+                <span>
+                  Não tem conta? <a href="/registrar">Cadastre-se</a>
+                </span>
               </div>
             </div>
           </div>

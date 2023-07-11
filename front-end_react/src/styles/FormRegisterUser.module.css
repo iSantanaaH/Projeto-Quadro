@@ -1,7 +1,7 @@
 :root {
   --white: #fff;
   --black: #111;
-  --gray: #D5D5D5;
+  --gray: #d5d5d5;
 }
 
 .containerLimitWidth {
@@ -52,12 +52,12 @@
   margin: 0 0 0.3rem 1rem;
 }
 
-::placeholder{
-    font-size: 1rem;
-    position: absolute;
-    font-size: 14px;
-    transition: 0.3s;
-    pointer-events: none;
+::placeholder {
+  font-size: 1rem;
+  position: absolute;
+  font-size: 14px;
+  transition: 0.3s;
+  pointer-events: none;
 }
 
 .containerEmail input,
@@ -68,19 +68,6 @@
   border: none;
   border-bottom: 0.1rem solid var(--black);
   outline: none;
-}
-
-.containerEmail input:focus,
-.containerPassword input:focus {
-  transition: 0.1 ;
-  color: var(--black);
-  position: relative;
-}
-
-input::placeholder:focus {
-    position: absolute;
-    top: 10px;
-    left: 20px;
 }
 
 .containerButtonSubmit button {

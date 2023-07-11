@@ -1,3 +1,10 @@
+:root {
+  --white: #fff;
+  --black: #111;
+  --gray: #d5d5d5;
+  --grayLight: #968f8f;
+}
+
 .containerLimitWidth {
   display: flex;
   justify-content: center;
@@ -6,7 +13,7 @@
   flex: 1 1 auto;
   flex-wrap: wrap;
   min-height: 25rem; /* 400px */
-  width: 25rem;
+  width: 25rem; /* 400px */
   box-sizing: border-box;
   filter: drop-shadow(0.5rem 0.5rem 0.5rem #111);
 }
@@ -38,6 +45,7 @@
   flex-direction: column;
   justify-content: flex-start;
   flex: 1;
+  position: relative;
 }
 
 .containerEmail label,
@@ -45,17 +53,28 @@
   margin: 0 0 0.3rem 1rem;
 }
 
+.labelInput {
+  font-size: 0.9rem;
+  position: absolute;
+  top: 1.6rem;
+  left: 0.6rem;
+  color: var(--grayLight);
+  font-weight: 300;
+}
+
+.labelInputFocus {
+  top: 0.0800rem;
+  transition: 0.3s;
+}
+
 .containerEmail input,
 .containerPassword input {
   padding: 0.6rem;
   font-size: 0.9rem;
   margin: 1rem;
-}
-
-.containerEmail input:focus,
-.containerPassword input:focus {
-  background: #d5d5d5;
-  color: #000;
+  border: none;
+  border-bottom: 0.1rem solid var(--black);
+  outline: none;
 }
 
 .containerButtonSubmit button {
