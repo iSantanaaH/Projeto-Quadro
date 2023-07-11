@@ -58,11 +58,7 @@ const LoginPage = () => {
                 <div className={styles.containerEmail}>
                   <label
                     htmlFor="email"
-                    className={`${styles.labelInput} ${
-                      isEmailFocused || emailInputValue !== ""
-                        ? styles.labelInputFocus
-                        : ""
-                    }`}
+                    className={`${styles.labelInput} ${isEmailFocused || emailInputValue !== "" ? styles.labelInputFocus: (emailInputValue === "" && !isEmailFocused) ? styles.labelInputDisable : ""}`}
                   >
                     Email
                   </label>
@@ -72,6 +68,7 @@ const LoginPage = () => {
                     className="campo"
                     name="email"
                     value={emailInputValue}
+                    autoComplete="off"
                     onChange={handleEmailInputChange}
                     onFocus={handleEmailInputFocus}
                     onBlur={handleInputBlur}
@@ -81,11 +78,7 @@ const LoginPage = () => {
 
                 <div className={styles.containerPassword}>
                   <label htmlFor="password"
-                  className={`${styles.labelInput} ${
-                    isPasswordFocused || passwordInputValue !== ""
-                      ? styles.labelInputFocus
-                      : ""
-                  }`}>Password</label>
+                  className={`${styles.labelInput} ${isPasswordFocused || passwordInputValue !== "" ? styles.labelInputFocus: (passwordInputValue === "" && !isPasswordFocused) ? styles.labelInputDisable : ""}`}>Password</label>
                   <input
                     type="password"
                     id="password"

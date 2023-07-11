@@ -13,7 +13,7 @@
   flex: 1 1 auto;
   flex-wrap: wrap;
   min-height: 25rem; /* 400px */
-  width: 25rem; /* 400px */
+  width: 25rem;  /* 400px */
   box-sizing: border-box;
   filter: drop-shadow(0.5rem 0.5rem 0.5rem #111);
 }
@@ -67,11 +67,15 @@
   transition: 0.3s;
 }
 
+.labelInputDisable {
+  transition: 0.3s;
+}
+
 .containerEmail input,
 .containerPassword input {
   padding: 0.6rem;
   font-size: 0.9rem;
-  margin: 1rem;
+  margin: 1.4rem 1rem;
   border: none;
   border-bottom: 0.1rem solid var(--black);
   outline: none;
