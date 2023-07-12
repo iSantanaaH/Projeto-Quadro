@@ -16,7 +16,7 @@ const LoginPage = () => {
   const handlePasswordInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
     setPasswordInputValue(value);
-  }
+  };
 
   const handleEmailInputFocus = () => {
     setIsEmailFocused(true);
@@ -24,7 +24,7 @@ const LoginPage = () => {
   
   const handlePasswordInputFocus = () => {
     setIsPasswordFocused(true);
-  }
+  };
 
   const handleInputBlur = () => {
     setIsEmailFocused(false);
@@ -57,14 +57,14 @@ const LoginPage = () => {
               >
                 <div className={styles.containerEmail}>
                   <label
-                    htmlFor="email"
+                    htmlFor="inputEmail"
                     className={`${styles.labelInput} ${isEmailFocused || emailInputValue !== "" ? styles.labelInputFocus: (emailInputValue === "" && !isEmailFocused) ? styles.labelInputDisable : ""}`}
                   >
-                    Email
+                    Username
                   </label>
                   <input
                     type="email"
-                    id="emailUser"
+                    id="inputEmail"
                     className="campo"
                     name="email"
                     value={emailInputValue}
@@ -77,11 +77,11 @@ const LoginPage = () => {
                 </div>
 
                 <div className={styles.containerPassword}>
-                  <label htmlFor="password"
+                  <label htmlFor="mainPassword"
                   className={`${styles.labelInput} ${isPasswordFocused || passwordInputValue !== "" ? styles.labelInputFocus: (passwordInputValue === "" && !isPasswordFocused) ? styles.labelInputDisable : ""}`}>Password</label>
                   <input
                     type="password"
-                    id="password"
+                    id="mainPassword"
                     className="campo"
                     name="senha"
                     minLength={8}
