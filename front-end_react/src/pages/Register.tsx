@@ -85,7 +85,6 @@ const RegisterPage = () => {
               <h2 className={styles.Title}> Cadastro </h2>
               <form
                 className={styles.contentFormLogin}
-                method="post"
                 action="#"
               >
                 <div className={styles.containerEmail}>
