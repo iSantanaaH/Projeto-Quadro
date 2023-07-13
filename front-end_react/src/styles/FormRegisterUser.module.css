@@ -108,13 +108,13 @@
   transition: 1s;
 }
 
-.containerRememberPassword {
+.containerQuestionAccount {
   display: flex;
   justify-content: center;
   margin: 1rem;
 }
 
-.containerRememberPassword a {
+.containerQuestionAccount a {
   text-decoration: none;
   margin: 0 0 0 0.1rem;
   color: var(--second-blue);

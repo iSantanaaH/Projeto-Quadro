@@ -12,6 +12,11 @@ const NavBar = () => {
     setIsIconUserFocused(true);
   };
 
+  const handleDisableDronpdownUser = () => {
+    setClickIconUser(false);
+    setIsIconUserFocused(false);
+  };
+  
   return (
     <nav className={styles.navBarContainer}>
       <div className={styles.containerTitle}>
@@ -31,14 +36,14 @@ const NavBar = () => {
             <HiOutlineUser />
           </button>
           {clickIconUser && (
-            <div
-              className={`${styles.userDropdown} ${
-                dropdownUserFocused === false ? styles.focusIconUserDisable : ""
-              }`}
-            >
-              <a href="/login">Login</a>
-              <a href="/registrar">Cadastrar</a>
-              <a href="#">Sair</a>
+            <div className={`${styles.divBackUserDropdown}`} onClick={handleDisableDronpdownUser}>
+              <div
+                className={`${styles.userDropdown} ${dropdownUserFocused === false ? styles.focusIconUserDisable : ""}`}
+              >
+                <a href="/login">Login</a>
+                <a href="/registrar">Cadastrar</a>
+                <a href="#">Sair</a>
+              </div>
             </div>
           )}
         </div>

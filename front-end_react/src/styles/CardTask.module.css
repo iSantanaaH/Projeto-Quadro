@@ -1,6 +1,6 @@
 .CardTask {
     display: flex;
-    flex: 1 1 auto;
+    /* flex: 1 1 auto; */
     align-items: center;
     flex-direction: column;
     margin: 3rem auto;
@@ -9,6 +9,11 @@
     border-radius: 0.5rem;
     background: #F1F2F4;
     overflow: hidden;
+}
+
+.mainCardTask {
+  display: flex;
+  flex-direction: column;
 }
 
 .secondMainCardTask {

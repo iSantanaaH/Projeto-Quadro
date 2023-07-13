@@ -104,6 +104,7 @@ const RegisterPage = () => {
                     id="inputUsername"
                     className="campo"
                     name="username"
+                    autoComplete="off"
                     onChange={handleUsernameInputChange}
                     onFocus={handleUsernameInputFocus}
                     onBlur={handleInputBlur}
@@ -128,6 +129,7 @@ const RegisterPage = () => {
                     id="inputEmail"
                     className="campo"
                     name="email"
+                    autoComplete="off"
                     onChange={handleEmailInputChange}
                     onFocus={handleEmailInputFocus}
                     onBlur={handleInputBlur}
@@ -193,7 +195,7 @@ const RegisterPage = () => {
                   </button>
                 </div>
               </form>
-              <div className={styles.containerRememberPassword}>
+              <div className={styles.containerQuestionAccount}>
                 <span>
                   Já tem uma conta? <a href="/login">Faça login</a>
                 </span>
