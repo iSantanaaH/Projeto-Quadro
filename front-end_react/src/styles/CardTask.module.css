@@ -1,35 +1,53 @@
+:root {
+  --blue-400: #42a5f5;
+  --blue-500: #2196f3;
+  --white-full: #fff;
+}
+
 .CardTask {
-    display: flex;
-    /* flex: 1 1 auto; */
-    align-items: center;
-    flex-direction: column;
-    margin: 3rem auto;
-    width: 22rem;
-    height: 12rem;
-    border-radius: 0.5rem;
-    background: #F1F2F4;
-    overflow: hidden;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin: 7rem;
+  width: 20rem;
+  height: auto;
+  border-radius: 0.5rem;
+  background: #f1f2f4;
 }
 
 .mainCardTask {
+  flex-grow: 1;
   display: flex;
+  width: 100%;
   flex-direction: column;
+  box-sizing: border-box;
+}
+
+.divOverflow {
+  max-height: 30rem;
+  overflow-x: hidden;
 }
 
 .secondMainCardTask {
-  background: #FFF;
-  padding: 1rem;
+  background: var(--white-full);
+  margin-bottom: 1rem;
+  margin: 0.5rem 1rem;
+  padding: 1rem 0.5rem;
   border-radius: 1rem;
 }
 
 .cardHeader {
-    padding: 0.5rem;
-    margin-bottom: 1rem;
+  padding: 0.8rem 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.firstTitleCard {
+  resize: none;
 }
 
 .mainCardHeader {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 .containerButton button {
@@ -45,7 +63,6 @@
 
 .containerTitle textarea {
   padding: 0.5rem;
-
   font-size: 1.2rem;
   overflow: hidden;
   overflow-wrap: break-word;
@@ -56,10 +73,45 @@
 
 .cardFooter {
   display: flex;
-  align-items: end;
+  box-sizing: border-box;
+  margin: 0 0.5rem;
 }
 
 .contentAddTask {
   display: flex;
   align-items: flex-end;
+  margin: 1rem 0.2rem;
+}
+
+.buttonSpan {
+  margin: 0 0.5rem;
+}
+
+.buttonSpan button {
+  border: none;
+  cursor: pointer;
+  /* margin-bottom: 0.5rem; */
+  background: var(--blue-400);
+  padding: 0.5rem 0.5rem;
+  border-radius: 0.5rem;
+  color: var(--white-full);
+}
+
+.buttonSpan button:hover {
+  background: var(--blue-500);
+  transition: 0.3s;
+}
+
+.buttonSpan span {
+  font-size: 1rem;
+}
+
+@media screen and (max-height: 5rem) {
+  .CardTask {
+    height: 15rem;
+  }
+
+  .mainCardTask {
+    height: 30rem;
+  }
 }
