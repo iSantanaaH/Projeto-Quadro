@@ -11,6 +11,7 @@
   align-items: center;
   justify-content: space-between;
   background: var(--white-full);
+  filter: drop-shadow(0.5rem 0.5rem 0.5rem var(--back-full));
 }
 
 .containerInputSearch {

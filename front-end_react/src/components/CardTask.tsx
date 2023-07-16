@@ -1,5 +1,9 @@
+{
+  /* Outros */
+}
 import { BiDotsHorizontal } from "react-icons/bi";
 import { BiPlus } from "react-icons/bi";
+import { useRef, useState, KeyboardEvent } from "react";
 
 {
   /* Estilos */
@@ -7,6 +11,43 @@ import { BiPlus } from "react-icons/bi";
 import styles from "../styles/CardTask.module.css";
 
 const CardTask = () => {
+  const [createNewDivTask, setIsCreateNewDivTask] = useState(0);
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
+
+  const handleCreateNewDivTask = () => {
+    setIsCreateNewDivTask(createNewDivTask + 1);
+  };
+
+  const handleRenderTaskDivs = () => {
+    const taskDivs = [];
+    for (let i = 0; i < createNewDivTask; i++) {
+      taskDivs.push(
+        <div className={styles.secondMainCardTask}>
+          <div className={styles.containerDescription}>
+            <div>
+              <textarea
+                onKeyDown={handleKeyDown}
+                ref={textareaRef}
+                className={styles.titleTaskUser}
+                autoFocus
+              ></textarea>
+            </div>
+          </div>
+        </div>
+      );
+    }
+    return taskDivs;
+  };
+
+  const handleKeyDown = (event: KeyboardEvent<HTMLTextAreaElement>) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      if (textareaRef.current) {
+        textareaRef.current.blur();
+      }
+    }
+  };
+
   return (
     <>
       <div className={styles.CardTask}>
@@ -17,6 +58,8 @@ const CardTask = () => {
                 <div className={styles.containerTitle}>
                   <textarea
                     id="textCardTask"
+                    ref={textareaRef}
+                    onKeyDown={handleKeyDown}
                     className={styles.firstTitleCard}
                   ></textarea>
                 </div>
@@ -28,25 +71,21 @@ const CardTask = () => {
                 </div>
               </div>
             </div>
-            <div className={styles.divOverflow}>
-              <div className={styles.secondMainCardTask}>
-                <div className={styles.containerDescription}>
-                  <div>
-                    <span>Fazer prova da faculdade amanhã as 19:00</span>
-                  </div>
-                </div>
-              </div>
+            <div className={styles.divOverflow}>{handleRenderTaskDivs()}</div>
+            <div className={styles.cardFooter}>
+              <div className={styles.contentAddTask}>
+                <div className={styles.iconBiPlus}></div>
 
-              <div className={styles.cardFooter}>
-                <div className={styles.contentAddTask}>
-                  <div className={styles.iconBiPlus}></div>
-
-                  <div className={styles.buttonSpan}>
-                    <button type="button" className={styles.buttonAddTask}>
-                      <BiPlus />
-                      <span>Adicionar tarefa</span>
-                    </button>
-                  </div>
+                <div className={styles.buttonSpan}>
+                  <button
+                    type="button"
+                    className={styles.buttonAddTask}
+                    id="buttonAddTask"
+                    onClick={handleCreateNewDivTask}
+                  >
+                    <BiPlus />
+                    <span>Adicionar tarefa</span>
+                  </button>
                 </div>
               </div>
             </div>

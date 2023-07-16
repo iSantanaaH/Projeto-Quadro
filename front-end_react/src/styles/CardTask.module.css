@@ -2,6 +2,7 @@
   --blue-400: #42a5f5;
   --blue-500: #2196f3;
   --white-full: #fff;
+  --white-400: #f1f2f4;
 }
 
 .CardTask {
@@ -12,7 +13,12 @@
   width: 20rem;
   height: auto;
   border-radius: 0.5rem;
-  background: #f1f2f4;
+  background: var(--white-400);
+  filter: drop-shadow(0.5rem 0.5rem 0.5rem var(--back-full));
+}
+
+.containerDescription {
+  min-height: 2.5rem;
 }
 
 .mainCardTask {
@@ -41,8 +47,16 @@
   margin-bottom: 1rem;
 }
 
-.firstTitleCard {
+.firstTitleCard,
+.titleTaskUser {
   resize: none;
+  border: none;
+  overflow: hidden;
+  outline: none;
+}
+
+.titleTaskUser {
+  width: 100%;
 }
 
 .mainCardHeader {
@@ -57,18 +71,14 @@
   cursor: pointer;
 }
 
-.containerDescription div {
-  width: 19rem;
-}
-
 .containerTitle textarea {
   padding: 0.5rem;
   font-size: 1.2rem;
   overflow: hidden;
   overflow-wrap: break-word;
   height: 1.25rem;
-  border: none;
   width: 100%;
+  border: none;
 }
 
 .cardFooter {
@@ -104,14 +114,4 @@
 
 .buttonSpan span {
   font-size: 1rem;
-}
-
-@media screen and (max-height: 5rem) {
-  .CardTask {
-    height: 15rem;
-  }
-
-  .mainCardTask {
-    height: 30rem;
-  }
 }
