@@ -15,7 +15,10 @@ const CardTask = () => {
             <div className={styles.cardHeader}>
               <div className={styles.mainCardHeader}>
                 <div className={styles.containerTitle}>
-                  <textarea className={styles.firstTitleCard}>A fazer</textarea>
+                  <textarea
+                    id="textCardTask"
+                    className={styles.firstTitleCard}
+                  ></textarea>
                 </div>
 
                 <div className={styles.containerButton}>

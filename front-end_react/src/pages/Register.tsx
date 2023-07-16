@@ -1,6 +1,12 @@
+{/* Outros */}
 import React, { useState } from "react";
-import styles from "../styles/FormRegisterUser.module.css";
 import { Helmet } from "react-helmet";
+
+{/* Estilos */}
+import styles from "../styles/FormRegisterUser.module.css";
+
+{/* Componentes */}
+import SecondaryNavBar from "../components/SecondaryNavBar";
 
 const RegisterPage = () => {
   const [usernameInputValue, setUsernameInputValue] = useState("");
@@ -66,6 +72,7 @@ const RegisterPage = () => {
 
   return (
     <>
+    <SecondaryNavBar />
       <Helmet>
         <style>
           {`

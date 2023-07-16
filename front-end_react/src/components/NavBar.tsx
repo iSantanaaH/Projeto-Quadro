@@ -1,6 +1,6 @@
 import { useState } from "react";
 import styles from "../styles/NavBar.module.css";
-import { FcSearch } from "react-icons/fc";
+import { BiSearch } from "react-icons/bi";
 import { HiOutlineUser } from "react-icons/hi";
 
 const NavBar = () => {
@@ -16,16 +16,23 @@ const NavBar = () => {
     setClickIconUser(false);
     setIsIconUserFocused(false);
   };
-  
+
   return (
     <nav className={styles.navBarContainer}>
+      <div className={styles.containerImageLogo}>
+        <a href="/">
+          <figure>
+            <img src="images/task3.png" alt="Logo" />
+          </figure>
+        </a>
+      </div>
       <div className={styles.containerTitle}>
-        <h2>Quadro de Tarefas</h2>
+        <h2>Gestão de Tarefas</h2>
       </div>
       <div className={styles.containerInputSearch}>
         <input type="search" placeholder="Search" />
         <button type="button">
-          <FcSearch />
+          <BiSearch />
         </button>
         <div className={styles.userMenu}>
           <button
@@ -36,9 +43,16 @@ const NavBar = () => {
             <HiOutlineUser />
           </button>
           {clickIconUser && (
-            <div className={`${styles.divBackUserDropdown}`} onClick={handleDisableDronpdownUser}>
+            <div
+              className={`${styles.divBackUserDropdown}`}
+              onClick={handleDisableDronpdownUser}
+            >
               <div
-                className={`${styles.userDropdown} ${dropdownUserFocused === false ? styles.focusIconUserDisable : ""}`}
+                className={`${styles.userDropdown} ${
+                  dropdownUserFocused === false
+                    ? styles.focusIconUserDisable
+                    : ""
+                }`}
               >
                 <a href="/login">Login</a>
                 <a href="/registrar">Cadastrar</a>

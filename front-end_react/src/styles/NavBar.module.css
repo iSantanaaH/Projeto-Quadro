@@ -1,65 +1,81 @@
 :root {
-    --gray: #d5d5d5;
+  --gray: #d5d5d5;
+  --white-full: #fff;
+  --back-full: #111;
 }
 
 .navBarContainer {
-    padding: 0.5rem;
-    margin: 0 0 1rem 0;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: var(--gray);
+  padding: 0.5rem;
+  margin: 0 0 1rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--white-full);
 }
 
 .containerInputSearch {
-    display: flex;
+  display: flex;
 }
 
-.containerInputSearch input{
-    font-size: 0.9rem;
-    padding: 0.3rem;
+.containerInputSearch input {
+  font-size: 0.9rem;
+  padding: 0.3rem;
+}
+
+.containerInputSearch input:focus {
+    background: var(--gray);
+    color: var(--black-full);
+    transition: 0.3s;
 }
 
 .containerInputSearch button {
-    font-size: 0.8rem;
-    padding: 0.3rem;
-    margin: 0 0.5rem 0 0;
+  font-size: 1rem;
+  padding: 0.3rem;
+  margin: 0 0.5rem 0 0;
 }
 
 .userMenu {
-    position: relative;
+  position: relative;
 }
 
 .divBackUserDropdown {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: transparent;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
 }
 
 .userDropdown {
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    top: 3rem;
-    right: 1.5rem;
-    background: var(--gray);
-    padding: 0.5rem;
-    border-radius: 0.3rem 0.1rem 0.3rem 0.3rem;
-    width: auto;
-    height: auto;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  top: 3.5rem;
+  right: 1.5rem;
+  background: var(--gray);
+  padding: 0.5rem;
+  border-radius: 0.3rem 0.1rem 0.3rem 0.3rem;
+  width: auto;
+  height: auto;
 }
 
 .userDropdown:not(.focusIconUserDisable) {
-    display: flex;
+  display: flex;
 }
 
 .focusIconUserDisable {
-    display: none;
+  display: none;
 }
 
 .userDropdown a {
-    margin: 0.5rem 0 0.3rem 0;
+  margin: 0.5rem 0 0.3rem 0;
+}
+
+.containerImageLogo {
+    margin: 0.3rem 0 0.1rem 0.5rem;
+}
+
+.containerImageLogo img {
+  width: 5rem;
 }

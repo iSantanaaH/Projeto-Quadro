@@ -1,6 +1,12 @@
+{/* Outros */}
 import React, { useState } from "react";
-import styles from "../styles/FormLoginUser.module.css";
 import { Helmet } from "react-helmet";
+
+{/* Estilos */}
+import styles from "../styles/FormLoginUser.module.css";
+
+{/* Componentes */}
+import SecondaryNavBar from "../components/SecondaryNavBar";
 
 const LoginPage = () => {
   const [emailInputValue, setEmailInputValue] = useState("");
@@ -33,6 +39,7 @@ const LoginPage = () => {
 
   return (
     <>
+    <SecondaryNavBar />
       <Helmet>
         <style>
           {`

@@ -1,0 +1,22 @@
+:root {
+  --gray: #d5d5d5;
+  --white-full: #fff;
+  --back-full: #111;
+}
+
+.navBarContainer {
+  padding: 0.1rem;
+  margin: 0 0 1rem 0;
+  display: flex;
+  align-items: center;
+  background: var(--white-full);
+  filter: drop-shadow(0.5rem 0.5rem 0.5rem var(--back-full));
+}
+
+.containerImageLogo {
+  margin: 0.8rem 0 0.5rem 1.5rem;
+}
+
+.containerImageLogo img {
+  width: 5rem;
+}
