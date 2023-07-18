@@ -2,6 +2,8 @@
   --gray: #d5d5d5;
   --white-full: #fff;
   --back-full: #111;
+  --blue-400: #7cc5e8;
+  --blue-500: #58b7e3;
 }
 
 .navBarContainer {
@@ -12,31 +14,53 @@
   justify-content: space-between;
   background: var(--white-full);
   filter: drop-shadow(0.5rem 0.5rem 0.5rem var(--back-full));
+  position: sticky;
+  top: 0;
+  z-index: 1;
 }
 
-.containerInputSearch {
+.searchAndAddTask {
   display: flex;
 }
 
-.containerInputSearch input {
+.searchAndAddTask input {
   font-size: 0.9rem;
   padding: 0.3rem;
 }
 
-.containerInputSearch input:focus {
-    background: var(--gray);
-    color: var(--black-full);
-    transition: 0.3s;
+.searchAndAddTask input:focus {
+  background: var(--gray);
+  color: var(--black-full);
+  transition: 0.3s;
 }
 
-.containerInputSearch button {
+.searchAndAddTask .buttonAddCardTask {
+  margin: 0 1rem 0 0;
+  border-radius: 0.3rem;
+  padding: 0.5rem 0.4rem;
+  border: none;
+  background: var(--blue-500);
+  cursor: pointer;
+}
+
+.searchAndAddTask .buttonAddCardTask:hover {
+  background: var(--blue-400);
+  transition: 0.3s;
+}
+
+.iconSearch {
   font-size: 1rem;
   padding: 0.3rem;
-  margin: 0 0.5rem 0 0;
 }
 
 .userMenu {
   position: relative;
+}
+
+.userMenu button {
+  font-size: 1rem;
+  padding: 0.3rem;
+  margin: 0 0.5rem 0 0.5rem;
 }
 
 .divBackUserDropdown {
@@ -74,7 +98,7 @@
 }
 
 .containerImageLogo {
-    margin: 0.3rem 0 0.1rem 0.5rem;
+  margin: 0.3rem 0 0.1rem 0.5rem;
 }
 
 .containerImageLogo img {

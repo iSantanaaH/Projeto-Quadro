@@ -1,21 +1,22 @@
-{/* Estilos */}
+import { useState } from 'react';
 import styles from '../src/HomePage.module.css';
-
-{/* Componentes */}
 import CardTask from './components/CardTask';
 import NavBar from './components/NavBar';
 
-{/* Pages */}
-// import LoginPage from './pages/Login';
-
-{/* Bibliotecas */}
-
 const HomePage = () => {
+  const [numCardTask, setNumCardTasks] = useState(1);
+
+  const handleAddCardTasks = () => {
+    setNumCardTasks(prevNumCardTasks => prevNumCardTasks + 1);
+  };
+
   return (
     <>
       <div className={styles.containerHomePage}>
-        <NavBar />
-        <CardTask />
+        <NavBar onAddCardTask={handleAddCardTasks} />
+        {Array.from({ length: numCardTask }).map((_, index) => (
+          <CardTask key={index} />
+        ))}
       </div>
     </>
   );

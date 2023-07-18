@@ -3,7 +3,11 @@ import styles from "../styles/NavBar.module.css";
 import { BiSearch } from "react-icons/bi";
 import { HiOutlineUser } from "react-icons/hi";
 
-const NavBar = () => {
+type NavBarProps = {
+  onAddCardTask: () => void;
+};
+
+const NavBar = ({ onAddCardTask }: NavBarProps) => {
   const [clickIconUser, setClickIconUser] = useState(false);
   const [dropdownUserFocused, setIsIconUserFocused] = useState(false);
 
@@ -29,9 +33,14 @@ const NavBar = () => {
       <div className={styles.containerTitle}>
         <h2>Gestão de Tarefas</h2>
       </div>
-      <div className={styles.containerInputSearch}>
+
+      <div className={styles.searchAndAddTask}>
+        <div>
+          <button onClick={onAddCardTask} className={styles.buttonAddCardTask}>Adicionar Quadro</button>
+          
+        </div>
         <input type="search" placeholder="Search" />
-        <button type="button">
+        <button type="button" className={styles.iconSearch}>
           <BiSearch />
         </button>
         <div className={styles.userMenu}>
