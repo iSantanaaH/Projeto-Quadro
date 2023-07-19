@@ -36,8 +36,9 @@ const NavBar = ({ onAddCardTask }: NavBarProps) => {
 
       <div className={styles.searchAndAddTask}>
         <div>
-          <button onClick={onAddCardTask} className={styles.buttonAddCardTask}>Adicionar Quadro</button>
-          
+          <button onClick={onAddCardTask} className={styles.buttonAddCardTask}>
+            Adicionar Quadro
+          </button>
         </div>
         <input type="search" placeholder="Search" />
         <button type="button" className={styles.iconSearch}>

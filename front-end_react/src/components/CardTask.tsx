@@ -12,25 +12,11 @@ import styles from "../styles/CardTask.module.css";
 
 const CardTask = () => {
   const [createNewDivTask, setIsCreateNewDivTask] = useState(0);
-  // const [renderCardTask, setIsRenderCardTask] = useState(0);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   const handleCreateNewDivTask = () => {
     setIsCreateNewDivTask(createNewDivTask + 1);
   };
-
-  // const handleCreateCardTask = () => {
-  //   setIsRenderCardTask(renderCardTask + 1);
-  // };
-
-  // const handleRenderCardTask = () => {
-  //   const cardTaskDivs = [];
-  //   for(let i = 0; i < renderCardTask; i++) {
-  //     cardTaskDivs.push(
-
-  //     )
-  //   }
-  // }
 
   const handleRenderTaskDivs = () => {
     const taskDivs = [];

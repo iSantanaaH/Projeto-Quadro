@@ -9,14 +9,14 @@
   display: flex;
   justify-content: center;
   flex-direction: column;
-  margin: 7rem;
+  margin: 7rem 1rem 0 7rem;
   width: 20rem;
   height: auto;
   border-radius: 0.5rem;
   background: var(--white-400);
   filter: drop-shadow(0.5rem 0.5rem 0.5rem var(--back-full));
 }
-
+ 
 .containerDescription {
   min-height: 2.5rem;
 }
@@ -100,7 +100,6 @@
 .buttonSpan button {
   border: none;
   cursor: pointer;
-  /* margin-bottom: 0.5rem; */
   background: var(--blue-400);
   padding: 0.5rem 0.5rem;
   border-radius: 0.5rem;
