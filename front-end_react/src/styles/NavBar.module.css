@@ -13,12 +13,10 @@
   align-items: center;
   justify-content: space-between;
   background: var(--white-full);
-  filter: drop-shadow(0.5rem 0.5rem 0.5rem var(--back-full));
   position: fixed;
   top: 0;
   right: 0;
   width: 100%;
-  z-index: 1;
 }
 
 .searchAndAddTask {
