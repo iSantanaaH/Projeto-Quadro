@@ -20,6 +20,7 @@ const CardTask = () => {
 
   const handleRenderTaskDivs = () => {
     const taskDivs = [];
+
     for (let i = 0; i < createNewDivTask; i++) {
       taskDivs.push(
         <div className={styles.secondMainCardTask}>
@@ -27,6 +28,7 @@ const CardTask = () => {
             <div>
               <textarea
                 onKeyDown={handleKeyDown}
+                onBlur={handleEmptyTextarea}
                 ref={textareaRef}
                 className={styles.titleTaskUser}
                 autoFocus
@@ -45,6 +47,16 @@ const CardTask = () => {
       if (textareaRef.current) {
         textareaRef.current.blur();
       }
+    }
+  };
+
+  const handleEmptyTextarea = (
+    event: React.ChangeEvent<HTMLTextAreaElement>
+  ) => {
+    const value = event.target.value;
+
+    if (value.trim() === "") {
+      textareaRef.current?.focus();
     }
   };
 
