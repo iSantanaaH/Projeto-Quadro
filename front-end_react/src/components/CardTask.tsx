@@ -3,7 +3,7 @@
 }
 import { BiDotsHorizontal } from "react-icons/bi";
 import { BiPlus } from "react-icons/bi";
-import { useRef, useState, KeyboardEvent } from "react";
+import { useRef, useState, KeyboardEvent, useEffect } from "react";
 
 {
   /* Estilos */
@@ -15,7 +15,7 @@ const CardTask = () => {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   const handleCreateNewDivTask = () => {
-    setIsCreateNewDivTask(createNewDivTask + 1);
+      setIsCreateNewDivTask(createNewDivTask + 1);
   };
 
   const handleRenderTaskDivs = () => {
@@ -25,15 +25,14 @@ const CardTask = () => {
       taskDivs.push(
         <div className={styles.secondMainCardTask}>
           <div className={styles.containerDescription}>
-            <div>
-              <textarea
-                onKeyDown={handleKeyDown}
-                onBlur={handleEmptyTextarea}
-                ref={textareaRef}
-                className={styles.titleTaskUser}
-                autoFocus
-              ></textarea>
-            </div>
+            <div className={styles.divBackgroundTextarea}></div>
+            <textarea
+              onKeyDown={handleKeyDown}
+              onBlur={handleEmptyTextarea}
+              ref={textareaRef}
+              className={styles.titleTaskUser}
+              autoFocus
+            ></textarea>
           </div>
         </div>
       );
@@ -58,7 +57,32 @@ const CardTask = () => {
     if (value.trim() === "") {
       textareaRef.current?.focus();
     }
+
+    // if(value.trim() !== "") {
+    //   handleCreateNewDivTask();
+    // }
   };
+
+
+  // const handleValidationRender = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   const value = event.target.value;
+
+  //   if(value === "")
+  // }
+
+  useEffect(() => {
+    if (textareaRef.current) {
+      textareaRef.current.focus();
+    }
+  });
+
+  const handleButtonClick = () => {
+    const value = textareaRef.current?.value;
+
+    if(value && value.trim() !== "") {
+      handleCreateNewDivTask();
+    }
+  }
 
   return (
     <div className={styles.flexCardTask}>
@@ -93,7 +117,7 @@ const CardTask = () => {
                     type="button"
                     className={styles.buttonAddTask}
                     id="buttonAddTask"
-                    onClick={handleCreateNewDivTask}
+                    onClick={handleButtonClick}
                   >
                     <BiPlus />
                     <span>Adicionar tarefa</span>

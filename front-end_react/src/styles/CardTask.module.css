@@ -16,9 +16,24 @@
   background: var(--white-400);
   filter: drop-shadow(0.5rem 0.5rem 0.5rem var(--back-full));
 }
- 
+
 .containerDescription {
   min-height: 2.5rem;
+  position: relative;
+}
+
+.divBackgroundTextarea {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  z-index: -1;
+}
+
+.titleTaskUser {
+  z-index: 1;
 }
 
 .mainCardTask {
@@ -53,9 +68,6 @@
   border: none;
   overflow: hidden;
   outline: none;
-}
-
-.titleTaskUser {
   width: 100%;
 }
 
@@ -114,4 +126,3 @@
 .buttonSpan span {
   font-size: 1rem;
 }
-
