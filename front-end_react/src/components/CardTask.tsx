@@ -12,7 +12,9 @@ import styles from "../styles/CardTask.module.css";
 
 const CardTask = () => {
   const [createNewDivTask, setIsCreateNewDivTask] = useState(0);
-  const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const [errorEmpty, setErrorEmpty] = useState(false);
+  const textareaMainCard = useRef<HTMLTextAreaElement>(null);
+  const contentTaskTextarea = useRef<HTMLTextAreaElement>(null);
 
   const handleCreateNewDivTask = () => {
       setIsCreateNewDivTask(createNewDivTask + 1);
@@ -29,7 +31,7 @@ const CardTask = () => {
             <textarea
               onKeyDown={handleKeyDown}
               onBlur={handleEmptyTextarea}
-              ref={textareaRef}
+              ref={contentTaskTextarea}
               className={styles.titleTaskUser}
               autoFocus
             ></textarea>
@@ -43,8 +45,9 @@ const CardTask = () => {
   const handleKeyDown = (event: KeyboardEvent<HTMLTextAreaElement>) => {
     if (event.key === "Enter") {
       event.preventDefault();
-      if (textareaRef.current) {
-        textareaRef.current.blur();
+      if (textareaMainCard.current && contentTaskTextarea) {
+        textareaMainCard.current.blur();
+        contentTaskTextarea.current?.blur();
       }
     }
   };
@@ -55,32 +58,26 @@ const CardTask = () => {
     const value = event.target.value;
 
     if (value.trim() === "") {
-      textareaRef.current?.focus();
+      textareaMainCard.current?.focus();
     }
-
-    // if(value.trim() !== "") {
-    //   handleCreateNewDivTask();
-    // }
   };
 
 
-  // const handleValidationRender = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   const value = event.target.value;
-
-  //   if(value === "")
-  // }
 
   useEffect(() => {
-    if (textareaRef.current) {
-      textareaRef.current.focus();
+    if (textareaMainCard.current) {
+      textareaMainCard.current.focus();
     }
   });
 
   const handleButtonClick = () => {
-    const value = textareaRef.current?.value;
+    const valueMainCard = textareaMainCard.current?.value;
+    const valueContentTask = contentTaskTextarea.current?.value;
 
-    if(value && value.trim() !== "") {
+    if(valueMainCard?.trim() !== "" && valueContentTask?.trim() !== "") {
       handleCreateNewDivTask();
+    } else {
+      setErrorEmpty(true);
     }
   }
 
@@ -94,7 +91,7 @@ const CardTask = () => {
                 <div className={styles.containerTitle}>
                   <textarea
                     id="textCardTask"
-                    ref={textareaRef}
+                    ref={textareaMainCard}
                     onKeyDown={handleKeyDown}
                     className={styles.firstTitleCard}
                   ></textarea>
