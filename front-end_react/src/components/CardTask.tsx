@@ -10,7 +10,8 @@ const CardTask = () => {
     useState<HTMLTextAreaElement | null>(null);
   const textareaMainCard = useRef<HTMLTextAreaElement>(null);
   const contentTaskTextarea = useRef<HTMLTextAreaElement>(null);
-  const [isContentEmpty, setIsContentEmpty] = useState(true);
+  const [isContentTaskEmpty, setIsContentTaskEmpty] = useState(true);
+  const [isContentMainCardEmpty, setIsContentMainCardEmpty] = useState(false);
   const [emptyTextareaIndex, setEmptyTextareaIndex] = useState<number | null>(
     null
   );
@@ -35,10 +36,12 @@ const CardTask = () => {
                 ref={contentTaskTextarea}
                 className={styles.titleTaskUser}
                 autoFocus
-                data-index={i} 
+                data-index={i}
               ></textarea>
-              {isContentEmpty && emptyTextareaIndex === i && (
-                <div className={styles.errorMessage}>Campo obrigatório</div>
+              {isContentTaskEmpty && emptyTextareaIndex === i && (
+                <div className={styles.errorMessageMainCard}>
+                  Campo obrigatório
+                </div>
               )}
             </div>
           </div>
@@ -65,6 +68,13 @@ const CardTask = () => {
     event: React.ChangeEvent<HTMLTextAreaElement>
   ) => {
     const value = event.target.value;
+    const isEmpty = value.trim() === "";
+
+    if (isEmpty) {
+      setIsContentMainCardEmpty(true);
+    } else {
+      setIsContentMainCardEmpty(false);
+    }
 
     if (textareaMainCard) {
       if (value !== "") {
@@ -81,13 +91,9 @@ const CardTask = () => {
     const value = event.target.value;
     const isEmpty = value.trim() === "";
 
-    setIsContentEmpty(isEmpty);
+    setIsContentTaskEmpty(isEmpty);
     if (isEmpty) {
-      const textareaIndex = parseInt(
-        event.target.getAttribute("data-index") || "",
-        10
-      );
-      setEmptyTextareaIndex(textareaIndex);
+      setEmptyTextareaIndex(1);
     } else {
       setEmptyTextareaIndex(null);
     }
@@ -106,10 +112,10 @@ const CardTask = () => {
     const valueContentTask = contentTaskTextarea.current?.value;
 
     if (valueMainCard?.trim() !== "" && valueContentTask?.trim() !== "") {
-      setIsContentEmpty(false);
+      setIsContentTaskEmpty(false);
       handleCreateNewDivTask();
     } else {
-      setIsContentEmpty(true);
+      setIsContentTaskEmpty(true);
     }
   };
 
@@ -129,6 +135,11 @@ const CardTask = () => {
                     className={styles.firstTitleCard}
                     autoFocus
                   ></textarea>
+                  {isContentMainCardEmpty && (
+                    <div className={styles.errorMessageMainCard}>
+                      Campo obrigatório
+                    </div>
+                  )}
                 </div>
 
                 <div className={styles.containerButton}>
