@@ -40,7 +40,7 @@ const NavBar = ({ onAddCardTask }: NavBarProps) => {
             Adicionar Quadro
           </button>
         </div>
-        <input type="search" placeholder="Search" />
+        <input type="search" placeholder="Search" required />
         <button type="button" className={styles.iconSearch}>
           <BiSearch />
         </button>
@@ -57,16 +57,18 @@ const NavBar = ({ onAddCardTask }: NavBarProps) => {
               className={`${styles.divBackUserDropdown}`}
               onClick={handleDisableDronpdownUser}
             >
-              <div
-                className={`${styles.userDropdown} ${
-                  dropdownUserFocused === false
-                    ? styles.focusIconUserDisable
-                    : ""
-                }`}
-              >
-                <a href="/login">Login</a>
-                <a href="/registrar">Cadastrar</a>
-                <a href="#">Sair</a>
+              <div className={styles.divStyleDropdown}>
+                <div
+                  className={`${styles.userDropdown} ${
+                    dropdownUserFocused === false
+                      ? styles.focusIconUserDisable
+                      : ""
+                  }`}
+                >
+                  <a href="/login">Login</a>
+                  <a href="/registrar">Cadastrar</a>
+                  <a href="#">Sair</a>
+                </div>
               </div>
             </div>
           )}
