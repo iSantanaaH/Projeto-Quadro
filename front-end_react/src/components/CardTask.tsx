@@ -93,7 +93,11 @@ const CardTask = () => {
 
     setIsContentTaskEmpty(isEmpty);
     if (isEmpty) {
-      setEmptyTextareaIndex(1);
+      const textareaIndex = parseInt(
+        event.target.getAttribute("data-index") || "",
+        10
+      );
+      setEmptyTextareaIndex(textareaIndex);
     } else {
       setEmptyTextareaIndex(null);
     }
