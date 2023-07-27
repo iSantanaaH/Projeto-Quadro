@@ -2,7 +2,7 @@ import { BiDotsHorizontal } from "react-icons/bi";
 import { BiPlus } from "react-icons/bi";
 import { useRef, useState, KeyboardEvent } from "react";
 
-import styles from "../styles/CardTask.module.css";
+import styles from '../styles/CardTask.module.css'
 
 const CardTask = () => {
   const [createNewDivTask, setIsCreateNewDivTask] = useState(0);
@@ -39,8 +39,8 @@ const CardTask = () => {
                 data-index={i}
               ></textarea>
               {isContentTaskEmpty && emptyTextareaIndex === i && (
-                <div className={styles.errorMessageMainCard}>
-                  Campo obrigatório
+                <div className={styles.errorMessageContentTask}>
+                  <span>Campo obrigatório</span>
                 </div>
               )}
             </div>
@@ -141,7 +141,7 @@ const CardTask = () => {
                   ></textarea>
                   {isContentMainCardEmpty && (
                     <div className={styles.errorMessageMainCard}>
-                      Campo obrigatório
+                      <span>Campo obrigatório</span>
                     </div>
                   )}
                 </div>
