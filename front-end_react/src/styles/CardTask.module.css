@@ -3,6 +3,7 @@
   --blue-500: #2196f3;
   --white-full: #fff;
   --white-400: #f1f2f4;
+  --gray: #d5d5d5;
 }
 
 .CardTask {
@@ -21,7 +22,6 @@
   min-height: 2.5rem;
   position: relative;
 }
-
 
 .divBackgroundTextarea {
   position: absolute;
@@ -127,3 +127,18 @@
 .buttonSpan span {
   font-size: 1rem;
 }
+
+.dropdownOptionsCardTask {
+  position: fixed;
+  background: var(--gray);
+  right: -8.1rem;
+  top: 1.3rem;
+  border-radius: 0.2rem;
+}
+
+.dropdownOptionsCardTask span {
+  cursor: pointer;
+  padding: 0.6rem;
+  
+}
+

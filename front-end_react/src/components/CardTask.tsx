@@ -17,17 +17,22 @@ const CardTask = () => {
     null
   );
   const refIconDropdownDeleteCardTask = useRef(null);
-  const [isDropdownDeleteCardTask, setIsDropdownDeleteCardTask] = useState(false);
+  const refSpanDropndownOptionsCardTask = useRef<HTMLSpanElement>;
+  const [isDropdownOptionsCardTask, setIsDropdownOptionsCardTask] =
+    useState(false);
 
   const handleClickOutsideIconOptions = () => {
-    setIsDropdownDeleteCardTask(false);
+    setIsDropdownOptionsCardTask(false);
   };
 
   const handleClickInsideIconOptions = () => {
-    setIsDropdownDeleteCardTask(true);
+    setIsDropdownOptionsCardTask(true);
   };
 
-  useOnClickOutside(refIconDropdownDeleteCardTask, handleClickOutsideIconOptions);
+  useOnClickOutside(
+    refIconDropdownDeleteCardTask,
+    handleClickOutsideIconOptions
+  );
 
   const handleCreateNewDivTask = () => {
     setIsCreateNewDivTask(createNewDivTask + 1);
@@ -160,12 +165,16 @@ const CardTask = () => {
                 </div>
 
                 <div className={styles.containerButton}>
-                  <button type="button" onClick={handleClickInsideIconOptions} ref={refIconDropdownDeleteCardTask}>
+                  <button
+                    type="button"
+                    onClick={handleClickInsideIconOptions}
+                    ref={refIconDropdownDeleteCardTask}
+                  >
                     <BiDotsHorizontal />
                   </button>
-                  {isDropdownDeleteCardTask && (
-                    <div>
-                      <span>Deletar Quadro</span>
+                  {isDropdownOptionsCardTask && (
+                    <div className={styles.dropdownOptionsCardTask}>
+                      <span className={styles.spanDropdownCardTask}>Deletar Quadro</span>
                     </div>
                   )}
                 </div>
