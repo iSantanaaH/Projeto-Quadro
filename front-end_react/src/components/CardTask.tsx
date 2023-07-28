@@ -1,8 +1,9 @@
 import { BiDotsHorizontal } from "react-icons/bi";
 import { BiPlus } from "react-icons/bi";
 import { useRef, useState, KeyboardEvent } from "react";
+import { useOnClickOutside } from "usehooks-ts";
 
-import styles from '../styles/CardTask.module.css'
+import styles from "../styles/CardTask.module.css";
 
 const CardTask = () => {
   const [createNewDivTask, setIsCreateNewDivTask] = useState(0);
@@ -15,6 +16,18 @@ const CardTask = () => {
   const [emptyTextareaIndex, setEmptyTextareaIndex] = useState<number | null>(
     null
   );
+  const refIconDropdownDeleteCardTask = useRef(null);
+  const [isDropdownDeleteCardTask, setIsDropdownDeleteCardTask] = useState(false);
+
+  const handleClickOutsideIconOptions = () => {
+    setIsDropdownDeleteCardTask(false);
+  };
+
+  const handleClickInsideIconOptions = () => {
+    setIsDropdownDeleteCardTask(true);
+  };
+
+  useOnClickOutside(refIconDropdownDeleteCardTask, handleClickOutsideIconOptions);
 
   const handleCreateNewDivTask = () => {
     setIsCreateNewDivTask(createNewDivTask + 1);
@@ -147,9 +160,14 @@ const CardTask = () => {
                 </div>
 
                 <div className={styles.containerButton}>
-                  <button type="button">
+                  <button type="button" onClick={handleClickInsideIconOptions} ref={refIconDropdownDeleteCardTask}>
                     <BiDotsHorizontal />
                   </button>
+                  {isDropdownDeleteCardTask && (
+                    <div>
+                      <span>Deletar Quadro</span>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
