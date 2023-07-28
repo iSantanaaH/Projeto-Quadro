@@ -116,3 +116,9 @@
 .containerImageLogo img {
   width: 5rem;
 }
+
+@media (max-width: 768px) {
+  .containerTitle {
+    display: none;
+  }
+}
