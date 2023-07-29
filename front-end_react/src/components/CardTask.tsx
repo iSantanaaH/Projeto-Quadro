@@ -1,7 +1,6 @@
 import { BiDotsHorizontal } from "react-icons/bi";
 import { BiPlus } from "react-icons/bi";
 import { useRef, useState, KeyboardEvent } from "react";
-import { useOnClickOutside } from "usehooks-ts";
 
 import styles from "../styles/CardTask.module.css";
 
@@ -16,23 +15,17 @@ const CardTask = () => {
   const [emptyTextareaIndex, setEmptyTextareaIndex] = useState<number | null>(
     null
   );
-  const refIconDropdownDeleteCardTask = useRef(null);
-  const refSpanDropndownOptionsCardTask = useRef<HTMLSpanElement>;
   const [isDropdownOptionsCardTask, setIsDropdownOptionsCardTask] =
     useState(false);
 
-  const handleClickOutsideIconOptions = () => {
-    setIsDropdownOptionsCardTask(false);
+  const handleClickInsideDropdown = () => {
+    
+    if(textareaMainCard.current?.value && contentTaskTextarea.current?.value !== "") {
+      setIsDropdownOptionsCardTask(true);
+    } else {
+      setIsDropdownOptionsCardTask(false);
+    }
   };
-
-  const handleClickInsideIconOptions = () => {
-    setIsDropdownOptionsCardTask(true);
-  };
-
-  useOnClickOutside(
-    refIconDropdownDeleteCardTask,
-    handleClickOutsideIconOptions
-  );
 
   const handleCreateNewDivTask = () => {
     setIsCreateNewDivTask(createNewDivTask + 1);
@@ -165,16 +158,14 @@ const CardTask = () => {
                 </div>
 
                 <div className={styles.containerButton}>
-                  <button
-                    type="button"
-                    onClick={handleClickInsideIconOptions}
-                    ref={refIconDropdownDeleteCardTask}
-                  >
+                  <button type="button" onClick={handleClickInsideDropdown}>
                     <BiDotsHorizontal />
                   </button>
                   {isDropdownOptionsCardTask && (
                     <div className={styles.dropdownOptionsCardTask}>
-                      <span className={styles.spanDropdownCardTask}>Deletar Quadro</span>
+                      <span className={styles.spanDropdownCardTask}>
+                        Deletar Quadro
+                      </span>
                     </div>
                   )}
                 </div>
