@@ -1,6 +1,6 @@
 import { BiDotsHorizontal } from "react-icons/bi";
 import { BiPlus } from "react-icons/bi";
-import { useRef, useState, KeyboardEvent } from "react";
+import { useRef, useState, KeyboardEvent, useEffect } from "react";
 
 import styles from "../styles/CardTask.module.css";
 
@@ -18,14 +18,38 @@ const CardTask = () => {
   const [isDropdownOptionsCardTask, setIsDropdownOptionsCardTask] =
     useState(false);
 
+  const refDivDropdownOptions = useRef<HTMLDivElement | null>(null);
   const handleClickInsideDropdown = () => {
-    
-    if(textareaMainCard.current?.value && contentTaskTextarea.current?.value !== "") {
-      setIsDropdownOptionsCardTask(true);
-    } else {
-      setIsDropdownOptionsCardTask(false);
-    }
+    setTimeout(() => {
+      if (
+        textareaMainCard.current?.value &&
+        contentTaskTextarea.current?.value !== ""
+      ) {
+        setIsDropdownOptionsCardTask(true);
+      } else {
+        setIsDropdownOptionsCardTask(false);
+      }
+    }, 100);
   };
+
+  const handleDisableDropdown = () => {
+    setIsDropdownOptionsCardTask(false);
+  };
+
+  useEffect(() => {
+    const handleOutsideClick = (event: MouseEvent) => {
+      const divDropdon = refDivDropdownOptions.current;
+      if (divDropdon && !divDropdon.contains(event.target as Node)) {
+        handleDisableDropdown();
+      }
+    };
+
+    document.addEventListener("click", handleOutsideClick);
+
+    return () => {
+      document.removeEventListener("click", handleOutsideClick);
+    };
+  }, []);
 
   const handleCreateNewDivTask = () => {
     setIsCreateNewDivTask(createNewDivTask + 1);
@@ -162,10 +186,27 @@ const CardTask = () => {
                     <BiDotsHorizontal />
                   </button>
                   {isDropdownOptionsCardTask && (
-                    <div className={styles.dropdownOptionsCardTask}>
-                      <span className={styles.spanDropdownCardTask}>
-                        Deletar Quadro
-                      </span>
+                    <div
+                      className={styles.dropdownOptionsCardTask}
+                      ref={refDivDropdownOptions}
+                    >
+                      <div className={styles.divOptions}>
+                        <button type="button">
+                          <span className={styles.spanDropdownCardTask}>
+                            Editar Quadro
+                          </span>
+                        </button>
+                        <button type="button">
+                          <span className={styles.spanDropdownCardTask}>
+                            Arquivar Quadro
+                          </span>
+                        </button>
+                        <button type="button">
+                          <span className={styles.spanDropdownCardTask}>
+                            Deletar Quadro
+                          </span>
+                        </button>
+                      </div>
                     </div>
                   )}
                 </div>

@@ -4,6 +4,7 @@
   --white-full: #fff;
   --white-400: #f1f2f4;
   --gray: #d5d5d5;
+  --gray-200: #e2e1e1;
 }
 
 .CardTask {
@@ -131,9 +132,9 @@
 .dropdownOptionsCardTask {
   position: fixed;
   background: var(--gray);
-  right: -7.1rem;
-  top: 1.5rem;
-  border-radius: 0.2rem;
+  right: -7.9rem;
+  top: 1.6rem;
+  border-radius: 1.3rem;
   z-index: 1;
 }
 
@@ -141,18 +142,29 @@
   content: "";
   position: fixed;
   width: 1.5rem;
-  right: -1rem;
-  height: 1rem;
-  background: var(--gray);
-  border-radius: 0 0 0 1.5rem;
+  border-radius: 0 0 0 1rem;
+  top: 1.6rem;
+  right: -0.6rem;
+  height: 0.7rem;
+  background: var(--gray-200);
   z-index: -1;
 }
 
-.dropdownOptionsCardTask button {
-  cursor: pointer;
-  padding: 0.1rem;
-  border: none;
-  font-size: 1rem;
-
+.divOptions {
+  display: flex;
+  flex-direction: column;
 }
 
+.divOptions button {
+  cursor: pointer;
+  padding: 0.5rem;
+  border: none;
+  font-size: 1rem;
+  border-bottom: 0.1rem solid;
+  border-radius: 0.3rem;
+}
+
+.divOptions button:hover {
+  background: var(--blue-400);
+  transition: all 0.3s;
+}
