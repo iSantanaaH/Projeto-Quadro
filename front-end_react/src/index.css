@@ -4,10 +4,15 @@
   font-family: "Roboto", sans-serif;
 }
 
+body {
+  min-height: 100vh;
+}
+
 .body-with-background {
   box-sizing: border-box;
   background: url("images/background.png") no-repeat fixed center;
   background-size: cover;
+  transition: 0.3s;
 }
 
 .body-with-background::before {

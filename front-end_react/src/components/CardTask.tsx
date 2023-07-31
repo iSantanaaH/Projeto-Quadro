@@ -35,15 +35,12 @@ const CardTask = ({ textareaMainCardRef, contentTaskTextareaRef }: CardTaskProps
     }, 100);
   };
 
-  const handleDisableDropdown = () => {
-    setIsDropdownOptionsCardTask(false);
-  };
 
   useEffect(() => {
     const handleOutsideClick = (event: MouseEvent) => {
       const divDropdon = refDivDropdownOptions.current;
       if (divDropdon && !divDropdon.contains(event.target as Node)) {
-        handleDisableDropdown();
+        setIsDropdownOptionsCardTask(false);
       }
     };
 
@@ -64,23 +61,22 @@ const CardTask = ({ textareaMainCardRef, contentTaskTextareaRef }: CardTaskProps
     for (let i = 0; i < createNewDivTask; i++) {
       taskDivs.push(
         <div key={i} className={styles.taskDivWrapper}>
-          <div className={styles.secondMainCardTask}>
+          <div className={`${styles.secondMainCardTask} ${isContentTaskEmpty && emptyTextareaIndex === i ? styles.textareaError : ""}`}>
             <div className={styles.containerDescription}>
-              <div className={styles.divBackgroundTextarea}></div>
-
-              <textarea
-                onKeyDown={handleKeyDown}
-                onBlur={handleEmptyContentTask}
-                ref={contentTaskTextareaRef}
-                className={styles.titleTaskUser}
-                autoFocus
-                data-index={i}
-              ></textarea>
               {isContentTaskEmpty && emptyTextareaIndex === i && (
                 <div className={styles.errorMessageContentTask}>
                   <span>Campo obrigatório</span>
                 </div>
               )}
+              <textarea
+                onKeyDown={handleKeyDown}
+                onBlur={handleEmptyContentTask}
+                ref={contentTaskTextareaRef}
+                className={`${styles.titleTaskUser}`}
+                autoFocus
+                data-index={i}
+              ></textarea>
+
             </div>
           </div>
         </div>
