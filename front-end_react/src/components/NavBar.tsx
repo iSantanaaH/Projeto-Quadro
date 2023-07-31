@@ -2,14 +2,18 @@ import { useState } from "react";
 import styles from "../styles/NavBar.module.css";
 import { BiSearch } from "react-icons/bi";
 import { HiOutlineUser } from "react-icons/hi";
+import { RefObject } from "react";
 
 type NavBarProps = {
   onAddCardTask: () => void;
+  textareaMainCardRef: RefObject<HTMLTextAreaElement>;
+  contentTaskTextareaRef: RefObject<HTMLTextAreaElement>;
 };
 
-const NavBar = ({ onAddCardTask }: NavBarProps) => {
+const NavBar = ({ onAddCardTask, textareaMainCardRef, contentTaskTextareaRef }: NavBarProps) => {
   const [clickIconUser, setClickIconUser] = useState(false);
   const [dropdownUserFocused, setIsIconUserFocused] = useState(false);
+
 
   const handleClickIconUser = () => {
     setClickIconUser(true);
@@ -20,6 +24,15 @@ const NavBar = ({ onAddCardTask }: NavBarProps) => {
     setClickIconUser(false);
     setIsIconUserFocused(false);
   };
+
+  const handleAddCardTask = () => {
+    const mainCardValue = textareaMainCardRef.current?.value;
+    const contentTaskValue = contentTaskTextareaRef.current?.value;
+
+    if (mainCardValue !== "" && contentTaskValue !== "") {
+      onAddCardTask();
+    }
+  }
 
   return (
     <nav className={styles.navBarContainer}>
@@ -36,7 +49,7 @@ const NavBar = ({ onAddCardTask }: NavBarProps) => {
 
       <div className={styles.searchAndAddTask}>
         <div>
-          <button onClick={onAddCardTask} className={styles.buttonAddCardTask}>
+          <button onClick={handleAddCardTask} className={styles.buttonAddCardTask}>
             Adicionar Quadro
           </button>
         </div>
@@ -59,11 +72,10 @@ const NavBar = ({ onAddCardTask }: NavBarProps) => {
             >
               <div className={styles.divStyleDropdown}>
                 <div
-                  className={`${styles.userDropdown} ${
-                    dropdownUserFocused === false
-                      ? styles.focusIconUserDisable
-                      : ""
-                  }`}
+                  className={`${styles.userDropdown} ${dropdownUserFocused === false
+                    ? styles.focusIconUserDisable
+                    : ""
+                    }`}
                 >
                   <a href="/login">Login</a>
                   <a href="/registrar">Cadastrar</a>

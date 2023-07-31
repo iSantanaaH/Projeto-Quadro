@@ -4,12 +4,15 @@ import { useRef, useState, KeyboardEvent, useEffect } from "react";
 
 import styles from "../styles/CardTask.module.css";
 
-const CardTask = () => {
+interface CardTaskProps {
+  textareaMainCardRef: React.RefObject<HTMLTextAreaElement>;
+  contentTaskTextareaRef: React.RefObject<HTMLTextAreaElement>;
+}
+
+const CardTask = ({ textareaMainCardRef, contentTaskTextareaRef }: CardTaskProps) => {
   const [createNewDivTask, setIsCreateNewDivTask] = useState(0);
   const [focusedTextarea, setFocusedTextarea] =
     useState<HTMLTextAreaElement | null>(null);
-  const textareaMainCard = useRef<HTMLTextAreaElement>(null);
-  const contentTaskTextarea = useRef<HTMLTextAreaElement>(null);
   const [isContentTaskEmpty, setIsContentTaskEmpty] = useState(true);
   const [isContentMainCardEmpty, setIsContentMainCardEmpty] = useState(false);
   const [emptyTextareaIndex, setEmptyTextareaIndex] = useState<number | null>(
@@ -22,8 +25,8 @@ const CardTask = () => {
   const handleClickInsideDropdown = () => {
     setTimeout(() => {
       if (
-        textareaMainCard.current?.value &&
-        contentTaskTextarea.current?.value !== ""
+        textareaMainCardRef.current?.value &&
+        contentTaskTextareaRef.current?.value !== ""
       ) {
         setIsDropdownOptionsCardTask(true);
       } else {
@@ -68,7 +71,7 @@ const CardTask = () => {
               <textarea
                 onKeyDown={handleKeyDown}
                 onBlur={handleEmptyContentTask}
-                ref={contentTaskTextarea}
+                ref={contentTaskTextareaRef}
                 className={styles.titleTaskUser}
                 autoFocus
                 data-index={i}
@@ -89,12 +92,12 @@ const CardTask = () => {
   const handleKeyDown = (event: KeyboardEvent<HTMLTextAreaElement>) => {
     if (event.key === "Enter") {
       event.preventDefault();
-      if (textareaMainCard.current && contentTaskTextarea) {
-        textareaMainCard.current.blur();
-        if (focusedTextarea === contentTaskTextarea.current) {
+      if (textareaMainCardRef.current || contentTaskTextareaRef.current !== null) {
+        textareaMainCardRef.current?.blur();
+        if (focusedTextarea === contentTaskTextareaRef.current) {
           setFocusedTextarea(null);
         }
-        contentTaskTextarea.current?.blur();
+        contentTaskTextareaRef.current?.blur();
       }
     }
   };
@@ -111,11 +114,11 @@ const CardTask = () => {
       setIsContentMainCardEmpty(false);
     }
 
-    if (textareaMainCard) {
+    if (textareaMainCardRef.current) {
       if (value !== "") {
-        textareaMainCard.current?.blur();
+        textareaMainCardRef.current.blur();
       } else {
-        textareaMainCard.current?.focus();
+        textareaMainCardRef.current.focus();
       }
     }
   };
@@ -137,18 +140,18 @@ const CardTask = () => {
       setEmptyTextareaIndex(null);
     }
 
-    if (contentTaskTextarea) {
+    if (contentTaskTextareaRef.current) {
       if (value !== "") {
-        contentTaskTextarea.current?.blur();
+        contentTaskTextareaRef.current.blur();
       } else {
-        contentTaskTextarea.current?.focus();
+        contentTaskTextareaRef.current.focus();
       }
     }
   };
 
   const handleButtonClick = () => {
-    const valueMainCard = textareaMainCard.current?.value;
-    const valueContentTask = contentTaskTextarea.current?.value;
+    const valueMainCard = textareaMainCardRef.current?.value;
+    const valueContentTask = contentTaskTextareaRef.current?.value;
 
     if (valueMainCard?.trim() !== "" && valueContentTask?.trim() !== "") {
       setIsContentTaskEmpty(false);
@@ -168,7 +171,7 @@ const CardTask = () => {
                 <div className={styles.containerTitle}>
                   <textarea
                     id="textCardTask"
-                    ref={textareaMainCard}
+                    ref={textareaMainCardRef}
                     onKeyDown={handleKeyDown}
                     onBlur={handleEmptyMainTitleCard}
                     className={styles.firstTitleCard}
