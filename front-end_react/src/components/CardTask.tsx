@@ -22,6 +22,7 @@ const CardTask = ({ textareaMainCardRef, contentTaskTextareaRef }: CardTaskProps
     useState(false);
 
   const refDivDropdownOptions = useRef<HTMLDivElement | null>(null);
+
   const handleClickInsideDropdown = () => {
     setTimeout(() => {
       if (
@@ -164,7 +165,12 @@ const CardTask = ({ textareaMainCardRef, contentTaskTextareaRef }: CardTaskProps
           <div className={styles.mainCardTask}>
             <div className={styles.cardHeader}>
               <div className={styles.mainCardHeader}>
-                <div className={styles.containerTitle}>
+                <div className={`${styles.containerTitle} ${isContentMainCardEmpty ? styles.textareaMainCardError : ""}`}>
+                  {isContentMainCardEmpty && (
+                    <div className={styles.errorMessageMainCard}>
+                      <span>Campo obrigatório</span>
+                    </div>
+                  )}
                   <textarea
                     id="textCardTask"
                     ref={textareaMainCardRef}
@@ -173,11 +179,7 @@ const CardTask = ({ textareaMainCardRef, contentTaskTextareaRef }: CardTaskProps
                     className={styles.firstTitleCard}
                     autoFocus
                   ></textarea>
-                  {isContentMainCardEmpty && (
-                    <div className={styles.errorMessageMainCard}>
-                      <span>Campo obrigatório</span>
-                    </div>
-                  )}
+
                 </div>
 
                 <div className={styles.containerButton}>

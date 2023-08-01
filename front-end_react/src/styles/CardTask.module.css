@@ -21,7 +21,7 @@
 }
 
 .containerDescription {
-  min-height: 2.5rem;
+  /* min-height: 2.5rem; */
   position: relative;
 }
 
@@ -45,7 +45,8 @@
   padding: 1rem 0.5rem;
   border-radius: 1rem;
   position: relative;
-  /* z-index: 0; */
+  display: flex;
+  flex: 1 1 auto;
 }
 
 .cardHeader {
@@ -173,13 +174,26 @@
 .errorMessageContentTask {
   position: absolute;
   top: -1.8rem;
-  /* z-index: 1; */
   border-radius: 0.5rem;
   background: var(--white-400);
 }
 
-.errorMessageContentTask span {
+.errorMessageContentTask span,
+.errorMessageMainCard span {
   font-size: 0.8rem;
   font-weight: 400;
   color: var(--red-full);
+}
+
+.errorMessageMainCard {
+  position: absolute;
+  top: -0.01rem;
+  background: var(--white-400);
+  border-radius: 0.5rem;
+}
+
+.textareaMainCardError {
+  width: 100%;
+  display: flex;
+  border: 0.1rem solid var(--red-full);
 }
