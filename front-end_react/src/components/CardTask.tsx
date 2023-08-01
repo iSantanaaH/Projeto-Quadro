@@ -75,7 +75,7 @@ const CardTask = ({ textareaMainCardRef, contentTaskTextareaRef }: CardTaskProps
                 className={`${styles.titleTaskUser}`}
                 autoFocus
                 data-index={i}
-                onChange={handleChangeTextareaElement}
+                onChange={handleChangeTextareaContentTask}
               ></textarea>
 
             </div>
@@ -86,18 +86,26 @@ const CardTask = ({ textareaMainCardRef, contentTaskTextareaRef }: CardTaskProps
     return taskDivs;
   };
 
-  const handleChangeTextareaElement = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+  const handleChangeTextareaMainCard = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     const value = event.target.value;
     const isEmpty = value.trim() === "";
 
-    if(isEmpty) {
-      setIsContentTaskEmpty(true)
+    if (isEmpty) {
       setIsContentMainCardEmpty(true);
     } else {
-      setIsContentTaskEmpty(false);
       setIsContentMainCardEmpty(false);
     }
+  };
 
+  const handleChangeTextareaContentTask = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const value = event.target.value;
+    const isEmpty = value.trim() === "";
+
+    if (isEmpty) {
+      setIsContentTaskEmpty(true);
+    } else {
+      setIsContentTaskEmpty(false);
+    }
   };
 
   const handleKeyDown = (event: KeyboardEvent<HTMLTextAreaElement>) => {
@@ -179,6 +187,10 @@ const CardTask = ({ textareaMainCardRef, contentTaskTextareaRef }: CardTaskProps
     }
   };
 
+  const handleDeleteCardTask = () => {
+    setIsCreateNewDivTask(createNewDivTask - 1);
+  };
+
   return (
     <div className={styles.flexCardTask}>
       <div className={styles.CardTask}>
@@ -198,7 +210,7 @@ const CardTask = ({ textareaMainCardRef, contentTaskTextareaRef }: CardTaskProps
                     onKeyDown={handleKeyDown}
                     onBlur={handleEmptyMainTitleCard}
                     className={styles.firstTitleCard}
-                    onChange={handleChangeTextareaElement}
+                    onChange={handleChangeTextareaMainCard}
                     autoFocus
                   ></textarea>
 
@@ -224,7 +236,7 @@ const CardTask = ({ textareaMainCardRef, contentTaskTextareaRef }: CardTaskProps
                             Arquivar Quadro
                           </span>
                         </button>
-                        <button type="button">
+                        <button onClick={handleDeleteCardTask} type="button">
                           <span className={styles.spanDropdownCardTask}>
                             Deletar Quadro
                           </span>
