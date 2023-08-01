@@ -36,7 +36,6 @@ const CardTask = ({ textareaMainCardRef, contentTaskTextareaRef }: CardTaskProps
     }, 100);
   };
 
-
   useEffect(() => {
     const handleOutsideClick = (event: MouseEvent) => {
       const divDropdon = refDivDropdownOptions.current;
@@ -76,6 +75,7 @@ const CardTask = ({ textareaMainCardRef, contentTaskTextareaRef }: CardTaskProps
                 className={`${styles.titleTaskUser}`}
                 autoFocus
                 data-index={i}
+                onChange={handleChangeTextareaElement}
               ></textarea>
 
             </div>
@@ -84,6 +84,20 @@ const CardTask = ({ textareaMainCardRef, contentTaskTextareaRef }: CardTaskProps
       );
     }
     return taskDivs;
+  };
+
+  const handleChangeTextareaElement = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const value = event.target.value;
+    const isEmpty = value.trim() === "";
+
+    if(isEmpty) {
+      setIsContentTaskEmpty(true)
+      setIsContentMainCardEmpty(true);
+    } else {
+      setIsContentTaskEmpty(false);
+      setIsContentMainCardEmpty(false);
+    }
+
   };
 
   const handleKeyDown = (event: KeyboardEvent<HTMLTextAreaElement>) => {
@@ -144,7 +158,14 @@ const CardTask = ({ textareaMainCardRef, contentTaskTextareaRef }: CardTaskProps
         contentTaskTextareaRef.current.focus();
       }
     }
+
+    const errorMessageSpan = event.target.parentElement?.querySelector(`.${styles.errorMessageContentTask}`) as HTMLDivElement;
+
+    if (errorMessageSpan) {
+      errorMessageSpan.style.display = isEmpty ? 'block' : 'none';
+    }
   };
+
 
   const handleButtonClick = () => {
     const valueMainCard = textareaMainCardRef.current?.value;
@@ -177,6 +198,7 @@ const CardTask = ({ textareaMainCardRef, contentTaskTextareaRef }: CardTaskProps
                     onKeyDown={handleKeyDown}
                     onBlur={handleEmptyMainTitleCard}
                     className={styles.firstTitleCard}
+                    onChange={handleChangeTextareaElement}
                     autoFocus
                   ></textarea>
 
