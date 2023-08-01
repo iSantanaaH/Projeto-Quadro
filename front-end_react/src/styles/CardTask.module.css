@@ -6,6 +6,7 @@
   --gray: #d5d5d5;
   --gray-200: #e2e1e1;
   --red-full: #ff0000;
+  --black-full: #111;
 }
 
 .CardTask {
@@ -21,7 +22,6 @@
 }
 
 .containerDescription {
-  /* min-height: 2.5rem; */
   position: relative;
 }
 
@@ -144,27 +144,39 @@
   top: 1.6rem;
   right: -0.6rem;
   height: 0.7rem;
-  background: var(--gray-200);
+  background: var(--gray);
   z-index: -1;
 }
 
 .divOptions {
   display: flex;
   flex-direction: column;
+  background: transparent;
+}
+
+.divOptions div {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.divOptions span {
+  text-align: left;
+  display: flex;
 }
 
 .divOptions button {
+  background: var(--gray);
+  width: 100%;
   cursor: pointer;
   padding: 0.5rem;
   border: none;
   font-size: 1rem;
-  border-bottom: 0.1rem solid;
   border-radius: 0.3rem;
 }
 
 .divOptions button:hover {
   background: var(--blue-400);
-  transition: all 0.3s;
+  transition: 0.3s all;
 }
 
 .textareaError {
@@ -196,4 +208,16 @@
   width: 100%;
   display: flex;
   border: 0.1rem solid var(--red-full);
+}
+
+.iconOptionsCardTask {
+  background: var(--blue-400);
+  cursor: pointer;
+  border-radius: 0.2rem;
+  display: flex;
+}
+
+.iconOptionsCardTask:hover {
+  transition: 0.3s;
+  background: var(--blue-500);
 }

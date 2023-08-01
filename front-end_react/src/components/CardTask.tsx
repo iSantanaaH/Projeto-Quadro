@@ -1,5 +1,4 @@
-import { BiDotsHorizontal } from "react-icons/bi";
-import { BiPlus } from "react-icons/bi";
+import { BiDotsHorizontal, BiPlus } from "react-icons/bi";
 import { useRef, useState, KeyboardEvent, useEffect } from "react";
 
 import styles from "../styles/CardTask.module.css";
@@ -77,7 +76,6 @@ const CardTask = ({ textareaMainCardRef, contentTaskTextareaRef }: CardTaskProps
                 data-index={i}
                 onChange={handleChangeTextareaContentTask}
               ></textarea>
-
             </div>
           </div>
         </div>
@@ -174,8 +172,7 @@ const CardTask = ({ textareaMainCardRef, contentTaskTextareaRef }: CardTaskProps
     }
   };
 
-
-  const handleButtonClick = () => {
+  const handleButtonAddContentTask = () => {
     const valueMainCard = textareaMainCardRef.current?.value;
     const valueContentTask = contentTaskTextareaRef.current?.value;
 
@@ -185,10 +182,6 @@ const CardTask = ({ textareaMainCardRef, contentTaskTextareaRef }: CardTaskProps
     } else {
       setIsContentTaskEmpty(true);
     }
-  };
-
-  const handleDeleteCardTask = () => {
-    setIsCreateNewDivTask(createNewDivTask - 1);
   };
 
   return (
@@ -217,7 +210,7 @@ const CardTask = ({ textareaMainCardRef, contentTaskTextareaRef }: CardTaskProps
                 </div>
 
                 <div className={styles.containerButton}>
-                  <button type="button" onClick={handleClickInsideDropdown}>
+                  <button type="button" onClick={handleClickInsideDropdown} className={styles.iconOptionsCardTask}>
                     <BiDotsHorizontal />
                   </button>
                   {isDropdownOptionsCardTask && (
@@ -226,21 +219,27 @@ const CardTask = ({ textareaMainCardRef, contentTaskTextareaRef }: CardTaskProps
                       ref={refDivDropdownOptions}
                     >
                       <div className={styles.divOptions}>
-                        <button type="button">
-                          <span className={styles.spanDropdownCardTask}>
-                            Editar Quadro
-                          </span>
-                        </button>
-                        <button type="button">
-                          <span className={styles.spanDropdownCardTask}>
-                            Arquivar Quadro
-                          </span>
-                        </button>
-                        <button onClick={handleDeleteCardTask} type="button">
-                          <span className={styles.spanDropdownCardTask}>
-                            Deletar Quadro
-                          </span>
-                        </button>
+                        <div>
+                          <button type="button">
+                            <span className={styles.spanDropdownCardTask}>
+                              Editar Quadro
+                            </span>
+                          </button>
+                        </div>
+                        <div>
+                          <button type="button">
+                            <span className={styles.spanDropdownCardTask}>
+                              Arquivar Quadro
+                            </span>
+                          </button>
+                        </div>
+                        <div>
+                          <button type="button">
+                            <span className={styles.spanDropdownCardTask}>
+                              Deletar Quadro
+                            </span>
+                          </button>
+                        </div>
                       </div>
                     </div>
                   )}
@@ -257,7 +256,7 @@ const CardTask = ({ textareaMainCardRef, contentTaskTextareaRef }: CardTaskProps
                     type="button"
                     className={styles.buttonAddTask}
                     id="buttonAddTask"
-                    onClick={handleButtonClick}
+                    onClick={handleButtonAddContentTask}
                   >
                     <BiPlus />
                     <span>Adicionar tarefa</span>
