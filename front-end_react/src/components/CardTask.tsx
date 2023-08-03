@@ -1,5 +1,5 @@
 import { BiDotsHorizontal, BiPlus } from "react-icons/bi";
-import { useRef, useState, KeyboardEvent, useEffect } from "react";
+import { useRef, useState, KeyboardEvent } from "react";
 
 import styles from "../styles/CardTask.module.css";
 
@@ -23,32 +23,13 @@ const CardTask = ({ textareaMainCardRef, contentTaskTextareaRef }: CardTaskProps
   const refDivDropdownOptions = useRef<HTMLDivElement | null>(null);
 
   const handleClickInsideDropdown = () => {
-    setTimeout(() => {
-      if (
-        textareaMainCardRef.current?.value &&
-        contentTaskTextareaRef.current?.value !== ""
-      ) {
-        setIsDropdownOptionsCardTask(true);
-      } else {
-        setIsDropdownOptionsCardTask(false);
-      }
-    }, 100);
+    if (
+      textareaMainCardRef.current?.value &&
+      contentTaskTextareaRef.current?.value !== ""
+    ) {
+      setIsDropdownOptionsCardTask(prevState => !prevState);
+    }
   };
-
-  useEffect(() => {
-    const handleOutsideClick = (event: MouseEvent) => {
-      const divDropdon = refDivDropdownOptions.current;
-      if (divDropdon && !divDropdon.contains(event.target as Node)) {
-        setIsDropdownOptionsCardTask(false);
-      }
-    };
-
-    document.addEventListener("click", handleOutsideClick);
-
-    return () => {
-      document.removeEventListener("click", handleOutsideClick);
-    };
-  }, []);
 
   const handleCreateNewDivTask = () => {
     setIsCreateNewDivTask(createNewDivTask + 1);
@@ -209,7 +190,7 @@ const CardTask = ({ textareaMainCardRef, contentTaskTextareaRef }: CardTaskProps
 
                 </div>
 
-                <div className={styles.containerButton}>
+                <div className={styles.containerButton} >
                   <button type="button" onClick={handleClickInsideDropdown} className={styles.iconOptionsCardTask}>
                     <BiDotsHorizontal />
                   </button>
