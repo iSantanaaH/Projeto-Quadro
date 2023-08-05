@@ -1,8 +1,8 @@
 import { useState } from "react";
 import styles from "../styles/NavBar.module.css";
 import { BiSearch } from "react-icons/bi";
-import { HiOutlineUser } from "react-icons/hi";
 import { RefObject } from "react";
+
 
 type NavBarProps = {
   onAddCardTask: () => void;
@@ -63,7 +63,7 @@ const NavBar = ({ onAddCardTask, textareaMainCardRef, contentTaskTextareaRef }: 
             className={styles.iconUser}
             onClick={handleClickIconUser}
           >
-            <HiOutlineUser />
+            <img src="images/user.png" alt="Icone do usuário" />
           </button>
           {clickIconUser && (
             <div

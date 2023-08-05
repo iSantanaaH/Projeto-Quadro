@@ -89,13 +89,14 @@ const CardTask = ({ textareaMainCardRef, contentTaskTextareaRef }: CardTaskProps
 
     if (textarea) {
       textarea.style.height = 'auto';
-      textarea.style.height = `${textarea.scrollHeight}px`
+      textarea.style.height = `${textarea.scrollHeight}px`;
     }
   };
 
   const handleKeyDown = (event: KeyboardEvent<HTMLTextAreaElement>) => {
     if (event.key === "Enter") {
       event.preventDefault();
+
       if (textareaMainCardRef.current || contentTaskTextareaRef.current !== null) {
         textareaMainCardRef.current?.blur();
         if (focusedTextarea === contentTaskTextareaRef.current) {
