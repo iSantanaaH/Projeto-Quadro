@@ -1,5 +1,5 @@
 .componentCardTask {
   display: flex;
   flex-wrap: wrap;
-  width: calc(100vw - 5rem);
+  width: 100%;
 }

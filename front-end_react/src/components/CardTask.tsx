@@ -49,10 +49,11 @@ const CardTask = ({ textareaMainCardRef, contentTaskTextareaRef }: CardTaskProps
                 </div>
               )}
               <textarea
+                id="textareaContentTask"
                 onKeyDown={handleKeyDown}
                 onBlur={handleEmptyContentTask}
                 ref={contentTaskTextareaRef}
-                className={`${styles.titleTaskUser}`}
+                className={styles.titleTaskUser}
                 autoFocus
                 data-index={i}
                 onChange={handleChangeTextareaContentTask}
@@ -95,6 +96,8 @@ const CardTask = ({ textareaMainCardRef, contentTaskTextareaRef }: CardTaskProps
         if (focusedTextarea === contentTaskTextareaRef.current) {
           setFocusedTextarea(null);
         }
+
+     
         contentTaskTextareaRef.current?.blur();
       }
     }
@@ -120,6 +123,8 @@ const CardTask = ({ textareaMainCardRef, contentTaskTextareaRef }: CardTaskProps
       }
     }
   };
+
+  console.log("Renderizou")
 
   const handleEmptyContentTask = (
     event: React.ChangeEvent<HTMLTextAreaElement>
