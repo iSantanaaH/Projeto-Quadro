@@ -1,5 +1,5 @@
 import { BiDotsHorizontal, BiPlus } from "react-icons/bi";
-import { useRef, useState, KeyboardEvent, useEffect } from "react";
+import React, { useRef, useState, KeyboardEvent, useEffect } from "react";
 
 import styles from "../styles/CardTask.module.css";
 
@@ -66,7 +66,7 @@ const CardTask = ({ textareaMainCardRef, contentTaskTextareaRef }: CardTaskProps
   };
 
   useEffect(() => {
-    
+
   }, [])
 
   const handleChangeTextareaMainCard = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -83,11 +83,17 @@ const CardTask = ({ textareaMainCardRef, contentTaskTextareaRef }: CardTaskProps
   const handleChangeTextareaContentTask = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     const value = event.target.value;
     const isEmpty = value.trim() === "";
+    const textarea = contentTaskTextareaRef.current;
 
     if (isEmpty) {
       setIsContentTaskEmpty(true);
     } else {
       setIsContentTaskEmpty(false);
+    }
+
+    if (textarea) {
+      textarea.style.height = 'auto';
+      textarea.style.height = `${textarea.scrollHeight}px`
     }
   };
 
@@ -100,7 +106,6 @@ const CardTask = ({ textareaMainCardRef, contentTaskTextareaRef }: CardTaskProps
           setFocusedTextarea(null);
         }
 
-     
         contentTaskTextareaRef.current?.blur();
       }
     }
