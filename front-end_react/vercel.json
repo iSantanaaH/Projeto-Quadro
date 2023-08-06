@@ -1,12 +1,5 @@
 {
-  "version": 2,
-  "builds": [
-    { "src": "front-end_react", "use": "@vercel/static" },
-    { "src": "back-end_node/package.json", "use": "@vercel/node" }
-  ],
-  "routes": [
-    { "src": "/api/(.*)", "dest": "back-end_node/$1" },
-    { "src": "/login(.*)", "dest": "front-end_react/$1" },
-    { "src": "/registrar(.*)", "dest": "front-end_react/$1" }
+  "rewrites":  [
+    {"source": "/(.*)", "destination": "/"}
   ]
 }
