@@ -6,9 +6,10 @@ import styles from "../styles/CardTask.module.css";
 interface CardTaskProps {
   textareaMainCardRef: React.RefObject<HTMLTextAreaElement>;
   contentTaskTextareaRef: React.RefObject<HTMLTextAreaElement>;
+  onRemoveCardTask: () => void; 
 }
 
-const CardTask = ({ textareaMainCardRef, contentTaskTextareaRef }: CardTaskProps) => {
+const CardTask = ({ textareaMainCardRef, contentTaskTextareaRef, onRemoveCardTask }: CardTaskProps) => {
   const [createNewDivTask, setIsCreateNewDivTask] = useState(0);
   const [focusedTextarea, setFocusedTextarea] =
     useState<HTMLTextAreaElement | null>(null);
@@ -223,7 +224,7 @@ const CardTask = ({ textareaMainCardRef, contentTaskTextareaRef }: CardTaskProps
                           </button>
                         </div>
                         <div>
-                          <button type="button">
+                          <button type="button" onClick={onRemoveCardTask}>
                             <span className={styles.spanDropdownCardTask}>
                               Deletar Quadro
                             </span>

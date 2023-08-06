@@ -12,6 +12,10 @@ const HomePage = () => {
     setNumCardTasks((prevNumCardTasks) => prevNumCardTasks + 1);
   };
 
+  const handleDeleteCardTask = () => {
+    setNumCardTasks((prevNumCardTasks) => prevNumCardTasks - 1);
+  };
+
   return (
     <div className={styles.divHomePage}>
       <div className={styles.componentNavBar}>
@@ -25,8 +29,10 @@ const HomePage = () => {
         <div className={styles.componentCardTask}>
           {Array.from({ length: numCardTask }).map((_, index) => (
             <CardTask key={index}
+              onRemoveCardTask={handleDeleteCardTask}
               textareaMainCardRef={textareaMainCardRef}
               contentTaskTextareaRef={contentTaskTextareaRef} />
+
           ))}
         </div>
       </div>
