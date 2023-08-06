@@ -34,25 +34,26 @@ const NavBar = ({ onAddCardTask, textareaMainCardRef, contentTaskTextareaRef }: 
   }
 
   return (
-    <nav className={styles.navBarContainer}>
-      <div className={styles.containerImageLogo}>
+    <section className={styles.navBarContainer}>
+      <header className={styles.containerImageLogo}>
         <a href="/">
           <figure>
             <img src="images/task3.png" alt="Logo" />
           </figure>
         </a>
-      </div>
-      <div className={styles.containerTitle}>
+      </header>
+      <section className={styles.containerTitle}>
         <h2>Gestão de Tarefas</h2>
-      </div>
-
-      <div className={styles.searchAndAddTask}>
+      </section>
+      <main className={styles.searchAndAddTask}>
         <div>
           <button onClick={handleAddCardTask} className={styles.buttonAddCardTask}>
             Adicionar Quadro
           </button>
         </div>
+        <div className={styles.inputSearch}>
         <input type="search" placeholder="Search" required />
+        </div>
         <button type="button" className={styles.iconSearch}>
           <img src="images/search.png" alt="" />
         </button>
@@ -84,8 +85,8 @@ const NavBar = ({ onAddCardTask, textareaMainCardRef, contentTaskTextareaRef }: 
             </div>
           )}
         </div>
-      </div>
-    </nav>
+      </main>
+    </section>
   );
 };
 

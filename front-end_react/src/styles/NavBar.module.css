@@ -55,6 +55,16 @@
   cursor: pointer;
   border: none;
   background: none;
+  position: absolute;
+  right: 3.2rem;
+}
+
+.inputSearch {
+  position: relative;
+}
+
+.inputSearch input {
+  border-radius: 0 1rem 1rem 0;
 }
 
 .iconSearch img {
@@ -78,8 +88,12 @@
 
 .userMenu img {
   margin-top: 0.1rem;
+  background: none;
+  border: none;
+  border-radius: 1000%;
   cursor: pointer;
   width: 1.7rem;
+  transition: 0.3s;
 }
 
 .userMenu img:hover {
