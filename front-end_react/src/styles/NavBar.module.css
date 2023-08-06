@@ -56,7 +56,7 @@
   border: none;
   background: none;
   position: absolute;
-  right: 3.2rem;
+  right: 3.1rem;
 }
 
 .inputSearch {
@@ -76,9 +76,8 @@
 .iconSearch img:hover,
 .userMenu img:hover {
   border-radius: 50%;
-  box-shadow: 0.1rem 0.1rem 1rem;
+  box-shadow: 0.01rem 0.01rem 0.2rem;
 }
-
 
 .userMenu {
   display: flex;
@@ -94,10 +93,7 @@
   cursor: pointer;
   width: 1.7rem;
   transition: 0.3s;
-}
-
-.userMenu img:hover {
-  background-color: blue;
+  filter: drop-shadow(0.1rem 0.1rem 0.2rem var(--back-full));
 }
 
 .userMenu button {
@@ -108,6 +104,7 @@
 
 .divBackUserDropdown {
   position: fixed;
+  display: flex;
   top: 0;
   left: 0;
   width: 100%;
@@ -119,6 +116,7 @@
   position: absolute;
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   top: 3.5rem;
   right: 1.8rem;
   background: var(--white-full);
@@ -126,6 +124,27 @@
   border-radius: 0.3rem 0.1rem 0.3rem 0.3rem;
   width: auto;
   height: auto;
+}
+
+.userDropdown div {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.userDropdown a {
+  display: flex;
+  border-radius: 5%;
+  padding: 0.2rem;
+  width: 100%;
+  box-sizing: border-box;
+  color: var(--back-full);
+  text-decoration: none;
+}
+
+.userDropdown a:hover {
+  background: var(--blue-400);
+  transition: 0.3s;
 }
 
 .divStyleDropdown::before {
@@ -152,6 +171,7 @@
 }
 
 .containerImageLogo {
+  display: flex;
   margin: 0.3rem 0 0.1rem 2rem;
 }
 

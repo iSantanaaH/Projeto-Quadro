@@ -52,7 +52,7 @@ const NavBar = ({ onAddCardTask, textareaMainCardRef, contentTaskTextareaRef }: 
           </button>
         </div>
         <div className={styles.inputSearch}>
-        <input type="search" placeholder="Search" required />
+          <input type="search" placeholder="Search" required />
         </div>
         <button type="button" className={styles.iconSearch}>
           <img src="images/search.png" alt="" />
@@ -77,9 +77,15 @@ const NavBar = ({ onAddCardTask, textareaMainCardRef, contentTaskTextareaRef }: 
                     : ""
                     }`}
                 >
-                  <a href="/login">Login</a>
-                  <a href="/registrar">Cadastrar</a>
-                  <a href="#">Sair</a>
+                  <div>
+                    <a href="/login">Login</a>
+                  </div>
+                  <div>
+                    <a href="/registrar">Cadastrar</a>
+                  </div>
+                  <div>
+                    <a href="#">Sair</a>
+                  </div>
                 </div>
               </div>
             </div>
