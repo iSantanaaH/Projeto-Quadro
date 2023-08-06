@@ -51,21 +51,39 @@
 }
 
 .iconSearch {
+  display: flex;
   cursor: pointer;
-  padding: 0.4rem;
-  background: var(--blue-500);
-  color: var(--white-full);
   border: none;
-  border-radius: 0.1rem;
-  font-size: 0.9rem;
+  background: none;
 }
+
+.iconSearch img {
+  width: 1.8rem;
+  border: none;
+  background: none;
+}
+
+.iconSearch img:hover,
+.userMenu img:hover {
+  border-radius: 50%;
+  box-shadow: 0.1rem 0.1rem 1rem;
+}
+
+
 .userMenu {
+  display: flex;
+  align-items: center;
   position: relative;
 }
 
 .userMenu img {
+  margin-top: 0.1rem;
   cursor: pointer;
-  width: 1.8rem;
+  width: 1.7rem;
+}
+
+.userMenu img:hover {
+  background-color: blue;
 }
 
 .userMenu button {
@@ -89,7 +107,7 @@
   flex-direction: column;
   top: 3.5rem;
   right: 1.8rem;
-  background: var(--gray);
+  background: var(--white-full);
   padding: 0.5rem;
   border-radius: 0.3rem 0.1rem 0.3rem 0.3rem;
   width: auto;
@@ -103,7 +121,7 @@
   right: 1.8rem;
   width: 1rem;
   height: 2rem;
-  background: var(--gray);
+  background: var(--white-full);
   border-radius: 1.5rem 0 0 0;
 }
 

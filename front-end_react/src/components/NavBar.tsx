@@ -1,6 +1,5 @@
 import { useState } from "react";
 import styles from "../styles/NavBar.module.css";
-import { BiSearch } from "react-icons/bi";
 import { RefObject } from "react";
 
 
@@ -55,7 +54,7 @@ const NavBar = ({ onAddCardTask, textareaMainCardRef, contentTaskTextareaRef }: 
         </div>
         <input type="search" placeholder="Search" required />
         <button type="button" className={styles.iconSearch}>
-          <BiSearch />
+          <img src="images/search.png" alt="" />
         </button>
         <div className={styles.userMenu}>
           <button
