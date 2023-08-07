@@ -18,7 +18,8 @@
   height: auto;
   border-radius: 0.5rem;
   background: var(--white-400);
-  filter: drop-shadow(0.5rem 0.5rem 0.5rem var(--back-full));
+  /* filter: drop-shadow(0.5rem 0.5rem 0.5rem var(--back-full)); */
+  position: relative;
 }
 
 .containerDescription {
@@ -130,24 +131,25 @@
 }
 
 .dropdownOptionsCardTask {
-  position: fixed;
-  background: var(--gray);
-  right: -7.9rem;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  background: var(--white-full);
+  right: -8.4rem;
   top: 1.6rem;
   border-radius: 1.3rem;
-  z-index: 1;
+  z-index: 100 !important;
 }
 
 .dropdownOptionsCardTask::before {
   content: "";
-  position: fixed;
+  position: absolute;
   width: 1.5rem;
   border-radius: 0 0 0 1rem;
-  top: 1.6rem;
-  right: -0.6rem;
+  top: 0;
+  right: 7.7rem;
   height: 0.7rem;
-  background: var(--gray);
-  z-index: -1;
+  background: var(--white-full);
 }
 
 .divOptions {
@@ -167,7 +169,7 @@
 }
 
 .divOptions button {
-  background: var(--gray);
+  background: var(--white-full);
   width: 100%;
   cursor: pointer;
   padding: 0.5rem;
