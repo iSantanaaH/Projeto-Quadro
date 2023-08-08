@@ -1,4 +1,4 @@
-import React, { useRef, useState, KeyboardEvent } from "react";
+import React, { useRef, useState, KeyboardEvent, useEffect } from "react";
 import { BiDotsHorizontal, BiPlus } from "react-icons/bi";
 
 import styles from "../styles/CardTask.module.css";
@@ -23,7 +23,8 @@ const CardTask = ({ textareaMainCardRef, contentTaskTextareaRef, onRemoveCardTas
 
   const refDivDropdownOptions = useRef<HTMLDivElement | null>(null);
 
-  const handleClickInsideDropdown = () => {
+  const handleClickInsideDropdown = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.stopPropagation();
     if (
       textareaMainCardRef.current?.value &&
       contentTaskTextareaRef.current?.value !== ""
@@ -173,6 +174,21 @@ const CardTask = ({ textareaMainCardRef, contentTaskTextareaRef, onRemoveCardTas
       setIsContentTaskEmpty(true);
     }
   };
+
+  useEffect(() => {
+    const handleClickOutsideDropdown = (event: MouseEvent) => {
+      if(refDivDropdownOptions && !refDivDropdownOptions.current?.contains(event.target as Node)) {
+        setIsDropdownOptionsCardTask(false);
+      }
+      
+      
+    };
+    document.addEventListener('click', handleClickOutsideDropdown);
+
+    return () => {
+      document.removeEventListener('click', handleClickOutsideDropdown);
+    }
+  }, []);
 
   return (
     <div className={styles.flexCardTask}>
