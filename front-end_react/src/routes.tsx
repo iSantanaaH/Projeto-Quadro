@@ -1,7 +1,7 @@
 {/* Pages */}
-import LoginPage from "./pages/Login";
+import LoginPage from "./pages/LoginPage/Login";
 import HomePage from "./HomePage";
-import RegisterPage from "./pages/Register";
+import RegisterPage from "./pages/RegisterPage/Register";
 
 import { Route, Routes } from "react-router";
 

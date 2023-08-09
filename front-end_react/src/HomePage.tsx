@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
 import styles from "../src/HomePage.module.css";
-import CardTask from "./components/CardTask";
-import NavBar from "./components/NavBar";
+import CardTask from "./components/ComponenteCardTask/CardTask";
+import NavBar from "./components/NavBarComponent/NavBar";
 
 const HomePage = () => {
   const [numCardTask, setNumCardTasks] = useState(0);

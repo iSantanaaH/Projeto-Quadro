@@ -1,4 +1,4 @@
-import styles from "../styles/SecondaryNavBar.module.css";
+import styles from "./NavBarPages.module.css";
 
 const SecondaryNavBar = () => {
   return (
@@ -6,7 +6,7 @@ const SecondaryNavBar = () => {
       <div className={styles.containerImageLogo}>
         <a href="/">
           <figure>
-            <img src="images/task3.png" alt="Logo" />
+            <img src="assets/images/task3.png" alt="Logo" />
           </figure>
         </a>
       </div>

@@ -3,10 +3,10 @@ import React, { useState } from "react";
 import { Helmet } from "react-helmet";
 
 {/* Estilos */}
-import styles from "../styles/FormLoginUser.module.css";
+import styles from "./PageLogin.module.css";
 
 {/* Componentes */}
-import SecondaryNavBar from "../components/SecondaryNavBar";
+import SecondaryNavBar from "../../components/NavBarPage/NavBarPages";
 
 const LoginPage = () => {
   const [emailInputValue, setEmailInputValue] = useState("");

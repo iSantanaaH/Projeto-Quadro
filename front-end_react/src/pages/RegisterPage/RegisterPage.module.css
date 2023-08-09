@@ -12,11 +12,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 13rem auto;
+  margin: 5rem auto;
   flex: 1 1 auto;
   flex-wrap: wrap;
   min-height: 25rem; /* 400px */
-  width: 25rem;  /* 400px */
+  width: 25rem; /* 400px */
   box-sizing: border-box;
   filter: drop-shadow(0.5rem 0.5rem 0.5rem #111);
 }
@@ -56,7 +56,7 @@
   margin: 0 0 0.3rem 1rem;
 }
 
-.labelInput {
+.labelInputGeneral {
   font-size: 0.9rem;
   position: absolute;
   top: 1.6rem;
@@ -95,12 +95,12 @@
   background-color: var(--gray);
   color: var(--black);
   border: none;
-  width: 50%;
   background: var(--blue);
+  width: 50%;
 }
 
 .containerButtonSubmit button:hover {
-  background: var(--blue-hover-button);
+  background-color: var(--blue-hover-button);
   transition: 0.4s;
 }
 
@@ -108,15 +108,14 @@
   transition: 1s;
 }
 
-.containerRememberPassword {
+.containerQuestionAccount {
   display: flex;
   justify-content: center;
   margin: 1rem;
 }
 
-.containerRememberPassword a {
+.containerQuestionAccount a {
   text-decoration: none;
   margin: 0 0 0 0.1rem;
   color: var(--second-blue);
 }
-

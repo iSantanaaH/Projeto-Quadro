@@ -1,7 +1,6 @@
 import { useState } from "react";
-import styles from "../styles/NavBar.module.css";
+import styles from "./NavBar.module.css";
 import { RefObject } from "react";
-
 
 type NavBarProps = {
   onAddCardTask: () => void;
@@ -9,11 +8,13 @@ type NavBarProps = {
   contentTaskTextareaRef: RefObject<HTMLTextAreaElement>;
 };
 
-const NavBar = ({ onAddCardTask, textareaMainCardRef, contentTaskTextareaRef }: NavBarProps) => {
+const NavBar = ({
+  onAddCardTask,
+  textareaMainCardRef,
+  contentTaskTextareaRef,
+}: NavBarProps) => {
   const [clickIconUser, setClickIconUser] = useState(false);
   const [dropdownUserFocused, setIsIconUserFocused] = useState(false);
-
-
   const handleClickIconUser = () => {
     setClickIconUser(true);
     setIsIconUserFocused(true);
@@ -31,14 +32,14 @@ const NavBar = ({ onAddCardTask, textareaMainCardRef, contentTaskTextareaRef }: 
     if (mainCardValue !== "" && contentTaskValue !== "") {
       onAddCardTask();
     }
-  }
+  };
 
   return (
     <section className={styles.navBarContainer}>
       <header className={styles.containerImageLogo}>
         <a href="/">
           <figure>
-            <img src="images/task3.png" alt="Logo" />
+            <img src="/assets/images/task3.png" alt="Logo" />
           </figure>
         </a>
       </header>
@@ -47,7 +48,10 @@ const NavBar = ({ onAddCardTask, textareaMainCardRef, contentTaskTextareaRef }: 
       </section>
       <main className={styles.searchAndAddTask}>
         <div>
-          <button onClick={handleAddCardTask} className={styles.buttonAddCardTask}>
+          <button
+            onClick={handleAddCardTask}
+            className={styles.buttonAddCardTask}
+          >
             Adicionar Quadro
           </button>
         </div>
@@ -55,7 +59,7 @@ const NavBar = ({ onAddCardTask, textareaMainCardRef, contentTaskTextareaRef }: 
           <input type="search" placeholder="Search" required />
         </div>
         <button type="button" className={styles.iconSearch}>
-          <img src="images/search.png" alt="" />
+          <img src="assets/images/search.png" alt="" />
         </button>
         <div className={styles.userMenu}>
           <button
@@ -63,7 +67,7 @@ const NavBar = ({ onAddCardTask, textareaMainCardRef, contentTaskTextareaRef }: 
             className={styles.iconUser}
             onClick={handleClickIconUser}
           >
-            <img src="images/user.png" alt="Icone do usuário" />
+            <img src="assets/images/user.png" alt="Icone do usuário" />
           </button>
           {clickIconUser && (
             <div
@@ -72,10 +76,11 @@ const NavBar = ({ onAddCardTask, textareaMainCardRef, contentTaskTextareaRef }: 
             >
               <div className={styles.divStyleDropdown}>
                 <div
-                  className={`${styles.userDropdown} ${dropdownUserFocused === false
-                    ? styles.focusIconUserDisable
-                    : ""
-                    }`}
+                  className={`${styles.userDropdown} ${
+                    dropdownUserFocused === false
+                      ? styles.focusIconUserDisable
+                      : ""
+                  }`}
                 >
                   <div>
                     <a href="/login">Login</a>

@@ -4,22 +4,29 @@
   font-family: "Roboto", sans-serif;
 }
 
-body, html, #root {
+body,
+html,
+#root {
   width: 100%;
+  background-size: cover;
 }
 
 .body-with-background {
-  box-sizing: border-box;
-  background: url("images/background.png") no-repeat fixed center;
+  background: url("assets/images/background.png") fixed no-repeat center;
   background-size: cover;
-  transition: 0.3s;
 }
 
-.body-with-background::before {
+.body-background-pages {
+  background: url("assets/images/tarefas.png") no-repeat center fixed;
+  background-size: cover;
+}
+
+.body-with-background::before,
+.body-background-pages {
   content: "";
   position: fixed;
   width: 100%;
-  min-height: 100vh;
+  height: 100%;
   background-color: rgba(0, 0, 0, 0.3);
   box-sizing: border-box;
 }

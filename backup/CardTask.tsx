@@ -42,7 +42,7 @@ const CardTask = ({ textareaMainCardRef, contentTaskTextareaRef, onRemoveCardTas
 
     for (let i = 0; i < createNewDivTask; i++) {
       taskDivs.push(
-        <div key={i} className={styles.taskDivWrapper}>
+        <section key={i}>
           <div className={`${styles.secondMainCardTask} ${isContentTaskEmpty && emptyTextareaIndex === i ? styles.textareaError : ""}`}>
             <div className={styles.containerDescription}>
               {isContentTaskEmpty && emptyTextareaIndex === i && (
@@ -61,7 +61,7 @@ const CardTask = ({ textareaMainCardRef, contentTaskTextareaRef, onRemoveCardTas
               ></textarea>
             </div>
           </div>
-        </div>
+        </section>
       );
     }
     return taskDivs;
@@ -191,8 +191,8 @@ const CardTask = ({ textareaMainCardRef, contentTaskTextareaRef, onRemoveCardTas
   }, []);
 
   return (
-    <div className={styles.flexCardTask}>
-      <div className={styles.CardTask}>
+    <main className={styles.flexCardTask}>
+      <section className={styles.CardTask}>
         <div className={styles.contentCardTask}>
           <div className={styles.mainCardTask}>
             <div className={styles.cardHeader}>
@@ -272,8 +272,8 @@ const CardTask = ({ textareaMainCardRef, contentTaskTextareaRef, onRemoveCardTas
             </div>
           </div>
         </div>
-      </div>
-    </div>
+      </section>
+    </main>
   );
 };
 
