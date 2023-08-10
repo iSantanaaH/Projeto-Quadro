@@ -1,20 +1,12 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import styles from "./NavBar.module.css";
-import { RefObject } from "react";
+import { CardContext } from "../Context/CardContext";
 
-type NavBarProps = {
-  onAddCardTask: () => void;
-  textareaMainCardRef: RefObject<HTMLTextAreaElement>;
-  contentTaskTextareaRef: RefObject<HTMLTextAreaElement>;
-};
-
-const NavBar = ({
-  onAddCardTask,
-  textareaMainCardRef,
-  contentTaskTextareaRef,
-}: NavBarProps) => {
+const NavBar = () => {
   const [clickIconUser, setClickIconUser] = useState(false);
   const [dropdownUserFocused, setIsIconUserFocused] = useState(false);
+  const {textareaMainCardRef, contentTaskTextareaRef, handleAddCardTasks} = useContext(CardContext);
+
   const handleClickIconUser = () => {
     setClickIconUser(true);
     setIsIconUserFocused(true);
@@ -30,7 +22,7 @@ const NavBar = ({
     const contentTaskValue = contentTaskTextareaRef.current?.value;
 
     if (mainCardValue !== "" && contentTaskValue !== "") {
-      onAddCardTask();
+      handleAddCardTasks();
     }
   };
 

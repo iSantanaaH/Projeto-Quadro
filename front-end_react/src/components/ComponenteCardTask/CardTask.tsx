@@ -1,27 +1,27 @@
-import React, { useRef, useState, KeyboardEvent, useContext } from "react";
+import React, { useState, KeyboardEvent, useContext } from "react";
 import { BiDotsHorizontal, BiPlus } from "react-icons/bi";
 
 import styles from "./CardTask.module.css";
 import { CardContext } from "../Context/CardContext";
-
-// interface CardTaskProps {
-//   textareaMainCardRef: React.RefObject<HTMLTextAreaElement>;
-//   contentTaskTextareaRef: React.RefObject<HTMLTextAreaElement>;
-//   onRemoveCardTask: () => void; 
-// }
 
 const CardTask = () => {
   const [createNewDivTask, setIsCreateNewDivTask] = useState(0);
   const [focusedTextarea, setFocusedTextarea] =
     useState<HTMLTextAreaElement | null>(null);
   const [isContentTaskEmpty, setIsContentTaskEmpty] = useState(true);
-  const [isContentMainCardEmpty, setIsContentMainCardEmpty] = useState(false);
   const [emptyTextareaIndex, setEmptyTextareaIndex] = useState<number | null>(
     null
   );
 
-  const refDivDropdownOptions = useRef<HTMLDivElement | null>(null);
-  const {handleClickInsideDropdown, textareaMainCardRef, contentTaskTextareaRef, isDropdownOptionsCardTask} = useContext(CardContext);
+  const {
+    handleClickInsideDropdown,
+    handleChangeTextareaMainCard,
+    textareaMainCardRef,
+    contentTaskTextareaRef,
+    isDropdownOptionsCardTask,
+    refDivDropdownOptions,
+    isContentMainCardEmpty
+  } = useContext(CardContext);
 
   const handleCreateNewDivTask = () => {
     setIsCreateNewDivTask(createNewDivTask + 1);
@@ -33,7 +33,13 @@ const CardTask = () => {
     for (let i = 0; i < createNewDivTask; i++) {
       taskDivs.push(
         <div key={i} className={styles.taskDivWrapper}>
-          <div className={`${styles.secondMainCardTask} ${isContentTaskEmpty && emptyTextareaIndex === i ? styles.textareaError : ""}`}>
+          <div
+            className={`${styles.secondMainCardTask} ${
+              isContentTaskEmpty && emptyTextareaIndex === i
+                ? styles.textareaError
+                : ""
+            }`}
+          >
             <div className={styles.containerDescription}>
               {isContentTaskEmpty && emptyTextareaIndex === i && (
                 <div className={styles.errorMessageContentTask}>
@@ -57,18 +63,9 @@ const CardTask = () => {
     return taskDivs;
   };
 
-  const handleChangeTextareaMainCard = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    const value = event.target.value;
-    const isEmpty = value.trim() === "";
-
-    if (isEmpty) {
-      setIsContentMainCardEmpty(true);
-    } else {
-      setIsContentMainCardEmpty(false);
-    }
-  };
-
-  const handleChangeTextareaContentTask = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+  const handleChangeTextareaContentTask = (
+    event: React.ChangeEvent<HTMLTextAreaElement>
+  ) => {
     const value = event.target.value;
     const isEmpty = value.trim() === "";
     const textarea = contentTaskTextareaRef.current;
@@ -80,7 +77,7 @@ const CardTask = () => {
     }
 
     if (textarea) {
-      textarea.style.height = 'auto';
+      textarea.style.height = "auto";
       textarea.style.height = `${textarea.scrollHeight}px`;
     }
   };
@@ -89,7 +86,10 @@ const CardTask = () => {
     if (event.key === "Enter") {
       event.preventDefault();
 
-      if (textareaMainCardRef.current || contentTaskTextareaRef.current !== null) {
+      if (
+        textareaMainCardRef.current ||
+        contentTaskTextareaRef.current !== null
+      ) {
         textareaMainCardRef.current?.blur();
         if (focusedTextarea === contentTaskTextareaRef.current) {
           setFocusedTextarea(null);
@@ -146,10 +146,12 @@ const CardTask = () => {
       }
     }
 
-    const errorMessageSpan = event.target.parentElement?.querySelector(`.${styles.errorMessageContentTask}`) as HTMLDivElement;
+    const errorMessageSpan = event.target.parentElement?.querySelector(
+      `.${styles.errorMessageContentTask}`
+    ) as HTMLDivElement;
 
     if (errorMessageSpan) {
-      errorMessageSpan.style.display = isEmpty ? 'block' : 'none';
+      errorMessageSpan.style.display = isEmpty ? "block" : "none";
     }
   };
 
@@ -165,21 +167,6 @@ const CardTask = () => {
     }
   };
 
-  // useEffect(() => {
-  //   const handleClickOutsideDropdown = (event: MouseEvent) => {
-  //     if(refDivDropdownOptions && !refDivDropdownOptions.current?.contains(event.target as Node)) {
-  //       setIsDropdownOptionsCardTask(false);
-  //     }
-      
-      
-  //   };
-  //   document.addEventListener('click', handleClickOutsideDropdown);
-
-  //   return () => {
-  //     document.removeEventListener('click', handleClickOutsideDropdown);
-  //   }
-  // }, []);
-
   return (
     <div className={styles.flexCardTask}>
       <div className={styles.CardTask}>
@@ -187,7 +174,11 @@ const CardTask = () => {
           <div className={styles.mainCardTask}>
             <div className={styles.cardHeader}>
               <div className={styles.mainCardHeader}>
-                <div className={`${styles.containerTitle} ${isContentMainCardEmpty ? styles.textareaMainCardError : ""}`}>
+                <div
+                  className={`${styles.containerTitle} ${
+                    isContentMainCardEmpty ? styles.textareaMainCardError : ""
+                  }`}
+                >
                   {isContentMainCardEmpty && (
                     <div className={styles.errorMessageMainCard}>
                       <span>Campo obrigatório</span>
@@ -202,11 +193,14 @@ const CardTask = () => {
                     onChange={handleChangeTextareaMainCard}
                     autoFocus
                   ></textarea>
-
                 </div>
 
-                <div className={styles.containerButton} >
-                  <button type="button" onClick={handleClickInsideDropdown} className={styles.iconOptionsCardTask}>
+                <div className={styles.containerButton}>
+                  <button
+                    type="button"
+                    onClick={handleClickInsideDropdown}
+                    className={styles.iconOptionsCardTask}
+                  >
                     <BiDotsHorizontal />
                   </button>
                   {isDropdownOptionsCardTask && (
@@ -266,5 +260,4 @@ const CardTask = () => {
     </div>
   );
 };
-
 export default CardTask;
