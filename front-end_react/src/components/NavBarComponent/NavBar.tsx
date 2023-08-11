@@ -5,7 +5,7 @@ import { CardContext } from "../Context/CardContext";
 const NavBar = () => {
   const [clickIconUser, setClickIconUser] = useState(false);
   const [dropdownUserFocused, setIsIconUserFocused] = useState(false);
-  const {textareaMainCardRef, contentTaskTextareaRef, handleAddCardTasks} = useContext(CardContext);
+  const { handleAddCardTasks } = useContext(CardContext);
 
   const handleClickIconUser = () => {
     setClickIconUser(true);
@@ -15,15 +15,6 @@ const NavBar = () => {
   const handleDisableDronpdownUser = () => {
     setClickIconUser(false);
     setIsIconUserFocused(false);
-  };
-
-  const handleAddCardTask = () => {
-    const mainCardValue = textareaMainCardRef.current?.value;
-    const contentTaskValue = contentTaskTextareaRef.current?.value;
-
-    if (mainCardValue !== "" && contentTaskValue !== "") {
-      handleAddCardTasks();
-    }
   };
 
   return (
@@ -41,7 +32,7 @@ const NavBar = () => {
       <main className={styles.searchAndAddTask}>
         <div>
           <button
-            onClick={handleAddCardTask}
+            onClick={handleAddCardTasks}
             className={styles.buttonAddCardTask}
           >
             Adicionar Quadro

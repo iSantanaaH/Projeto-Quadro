@@ -1,31 +1,27 @@
-import React, { useState, KeyboardEvent, useContext } from "react";
+import { useContext } from "react";
 import { BiDotsHorizontal, BiPlus } from "react-icons/bi";
 
 import styles from "./CardTask.module.css";
 import { CardContext } from "../Context/CardContext";
 
 const CardTask = () => {
-  const [createNewDivTask, setIsCreateNewDivTask] = useState(0);
-  const [focusedTextarea, setFocusedTextarea] =
-    useState<HTMLTextAreaElement | null>(null);
-  const [isContentTaskEmpty, setIsContentTaskEmpty] = useState(true);
-  const [emptyTextareaIndex, setEmptyTextareaIndex] = useState<number | null>(
-    null
-  );
-
   const {
     handleClickInsideDropdown,
     handleChangeTextareaMainCard,
+    handleEmptyMainTitleCard,
+    handleEmptyContentTask,
+    handleChangeTextareaContentTask,
+    handleButtonAddContentTask,
+    handleKeyDown,
     textareaMainCardRef,
     contentTaskTextareaRef,
     isDropdownOptionsCardTask,
     refDivDropdownOptions,
-    isContentMainCardEmpty
+    isContentMainCardEmpty,
+    emptyTextareaIndex,
+    isContentTaskEmpty,
+    createNewDivTask,
   } = useContext(CardContext);
-
-  const handleCreateNewDivTask = () => {
-    setIsCreateNewDivTask(createNewDivTask + 1);
-  };
 
   const handleRenderTaskDivs = () => {
     const taskDivs = [];
@@ -61,110 +57,6 @@ const CardTask = () => {
       );
     }
     return taskDivs;
-  };
-
-  const handleChangeTextareaContentTask = (
-    event: React.ChangeEvent<HTMLTextAreaElement>
-  ) => {
-    const value = event.target.value;
-    const isEmpty = value.trim() === "";
-    const textarea = contentTaskTextareaRef.current;
-
-    if (isEmpty) {
-      setIsContentTaskEmpty(true);
-    } else {
-      setIsContentTaskEmpty(false);
-    }
-
-    if (textarea) {
-      textarea.style.height = "auto";
-      textarea.style.height = `${textarea.scrollHeight}px`;
-    }
-  };
-
-  const handleKeyDown = (event: KeyboardEvent<HTMLTextAreaElement>) => {
-    if (event.key === "Enter") {
-      event.preventDefault();
-
-      if (
-        textareaMainCardRef.current ||
-        contentTaskTextareaRef.current !== null
-      ) {
-        textareaMainCardRef.current?.blur();
-        if (focusedTextarea === contentTaskTextareaRef.current) {
-          setFocusedTextarea(null);
-        }
-
-        contentTaskTextareaRef.current?.blur();
-      }
-    }
-  };
-
-  const handleEmptyMainTitleCard = (
-    event: React.ChangeEvent<HTMLTextAreaElement>
-  ) => {
-    const value = event.target.value;
-    const isEmpty = value.trim() === "";
-
-    if (isEmpty) {
-      setIsContentMainCardEmpty(true);
-    } else {
-      setIsContentMainCardEmpty(false);
-    }
-
-    if (textareaMainCardRef.current) {
-      if (value !== "") {
-        textareaMainCardRef.current.blur();
-      } else {
-        textareaMainCardRef.current.focus();
-      }
-    }
-  };
-
-  const handleEmptyContentTask = (
-    event: React.ChangeEvent<HTMLTextAreaElement>
-  ) => {
-    const value = event.target.value;
-    const isEmpty = value.trim() === "";
-
-    setIsContentTaskEmpty(isEmpty);
-    if (isEmpty) {
-      const textareaIndex = parseInt(
-        event.target.getAttribute("data-index") || "",
-        10
-      );
-      setEmptyTextareaIndex(textareaIndex);
-    } else {
-      setEmptyTextareaIndex(null);
-    }
-
-    if (contentTaskTextareaRef.current) {
-      if (value !== "") {
-        contentTaskTextareaRef.current.blur();
-      } else {
-        contentTaskTextareaRef.current.focus();
-      }
-    }
-
-    const errorMessageSpan = event.target.parentElement?.querySelector(
-      `.${styles.errorMessageContentTask}`
-    ) as HTMLDivElement;
-
-    if (errorMessageSpan) {
-      errorMessageSpan.style.display = isEmpty ? "block" : "none";
-    }
-  };
-
-  const handleButtonAddContentTask = () => {
-    const valueMainCard = textareaMainCardRef.current?.value;
-    const valueContentTask = contentTaskTextareaRef.current?.value;
-
-    if (valueMainCard?.trim() !== "" && valueContentTask?.trim() !== "") {
-      setIsContentTaskEmpty(false);
-      handleCreateNewDivTask();
-    } else {
-      setIsContentTaskEmpty(true);
-    }
   };
 
   return (
