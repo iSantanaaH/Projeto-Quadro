@@ -59,11 +59,10 @@ const NavBar = () => {
             >
               <div className={styles.divStyleDropdown}>
                 <div
-                  className={`${styles.userDropdown} ${
-                    dropdownUserFocused === false
-                      ? styles.focusIconUserDisable
-                      : ""
-                  }`}
+                  className={`${styles.userDropdown} ${dropdownUserFocused === false
+                    ? styles.focusIconUserDisable
+                    : ""
+                    }`}
                 >
                   <div>
                     <a href="/login">Login</a>

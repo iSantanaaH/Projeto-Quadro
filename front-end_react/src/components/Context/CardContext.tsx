@@ -63,22 +63,23 @@ export const CardProvider = ({ children }: { children: React.ReactNode }) => {
     null
   );
 
+  {/* Lógica para criar uma nova tarefa */}
   const handleRenderTaskDivs = () => {
     const contentCardTask: TasksContentInCardTaskProps = {
       id: nextIdContentCardTask,
       title: `Tarefa ${nextIdContentCardTask}`,
       status: "",
- 
     };
 
     setContentCardTask((prevContent) => [...prevContent, contentCardTask]);
     setnextIdContentCardTask(prevIdContentCardTask => prevIdContentCardTask + 1);
     // console.log(nextIdContentCardTask);
     console.log(contentCardTask);
-    
-    
+
+
   }
 
+  {/* Cria um novo quadro de tarefas */}
   const handleAddCardTasks = () => {
     const textareaMain = textareaMainCardRef.current?.value;
     const textareaContent = contentTaskTextareaRef.current?.value;
@@ -93,6 +94,7 @@ export const CardProvider = ({ children }: { children: React.ReactNode }) => {
     }
   }
 
+  {/* Recebe o clique do usuário no botão da dropdown e mostra as opções */}
   const handleClickInsideDropdown = (
     event: React.MouseEvent<HTMLButtonElement>
   ) => {
@@ -105,6 +107,7 @@ export const CardProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
+  {/* Verifica se está vazio e mostra o erro conforme digitado */}
   const handleChangeTextareaMainCard = (
     event: React.ChangeEvent<HTMLTextAreaElement>
   ) => {
@@ -118,6 +121,7 @@ export const CardProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
+  {/* Verifica se o conteudo o titutlo principal do quadro está vazio */}
   const handleEmptyMainTitleCard = (
     event: React.ChangeEvent<HTMLTextAreaElement>
   ) => {
@@ -139,6 +143,7 @@ export const CardProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
+  {/* Desabilita a dropdown de opções do quadro se o clique ocorrer fora da dropdown */}
   useEffect(() => {
     const handleClickOutsideDropdown = (event: MouseEvent) => {
       if (
@@ -155,6 +160,7 @@ export const CardProvider = ({ children }: { children: React.ReactNode }) => {
     };
   }, []);
 
+  {/* Verifica se o conteudo da tarefa está vazio */ }
   const handleEmptyContentTask = (
     event: React.ChangeEvent<HTMLTextAreaElement>
   ) => {
@@ -189,7 +195,7 @@ export const CardProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
-  {/*  */ }
+  {/* Função que cria uma nova tarefa */ }
 
   const handleButtonAddContentTask = () => {
     const valueMainCard = textareaMainCardRef.current?.value;
@@ -236,7 +242,6 @@ export const CardProvider = ({ children }: { children: React.ReactNode }) => {
         if (focusedTextarea === contentTaskTextareaRef.current) {
           setFocusedTextarea(null);
         }
-
         contentTaskTextareaRef.current?.blur();
       }
     }
