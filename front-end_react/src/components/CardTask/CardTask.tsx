@@ -20,7 +20,7 @@ const CardTask = () => {
     isContentMainCardEmpty,
     emptyTextareaIndex,
     isContentTaskEmpty,
-    contentCardTask,
+    taskUser,
   } = useContext(CardContext);
 
   return (
@@ -91,7 +91,7 @@ const CardTask = () => {
               </div>
             </div>
             <div className={styles.divOverflow}>
-              {contentCardTask.map((contentCard) => (
+              {taskUser.map((contentCard) => (
                 <div key={contentCard.id} className={styles.taskDivWrapper}>
                   <div
                     className={`${styles.secondMainCardTask} ${isContentTaskEmpty && emptyTextareaIndex === contentCard.id

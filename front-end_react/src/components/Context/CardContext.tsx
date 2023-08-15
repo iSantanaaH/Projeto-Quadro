@@ -24,12 +24,12 @@ interface CardContextProps {
   textareaMainCardRef: React.RefObject<HTMLTextAreaElement>;
   contentTaskTextareaRef: React.RefObject<HTMLTextAreaElement>;
   isDropdownOptionsCardTask: boolean;
-  numCardTask: CardTaskProps[];
+  cardTaskUser: CardTaskProps[];
   refDivDropdownOptions: React.RefObject<HTMLDivElement>;
   isContentMainCardEmpty: boolean;
   emptyTextareaIndex: number | null;
   isContentTaskEmpty: boolean;
-  contentCardTask: TasksContentInCardTaskProps[];
+  taskUser: TasksContentInCardTaskProps[];
 }
 
 interface TasksContentInCardTaskProps {
@@ -46,12 +46,12 @@ export const CardContext = createContext({} as CardContextProps);
 export const CardProvider = ({ children }: { children: React.ReactNode }) => {
   const [isDropdownOptionsCardTask, setIsDropdownOptionsCardTask] =
     useState(false);
-  const [numCardTask, setNumCardTasks] = useState<CardTaskProps[]>([]);
+  const [cardTaskUser, setCardTaskUsers] = useState<CardTaskProps[]>([]);
   // const [createNewDivTask, setIsCreateNewDivTask] = useState(0);
   const [isContentMainCardEmpty, setIsContentMainCardEmpty] = useState(false);
   const [isContentTaskEmpty, setIsContentTaskEmpty] = useState(true);
-  const [contentCardTask, setContentCardTask] = useState<TasksContentInCardTaskProps[]>([]);
-  const [nextIdContentCardTask, setnextIdContentCardTask] = useState(1);
+  const [taskUser, setTaskUser] = useState<TasksContentInCardTaskProps[]>([]);
+  const [nextIdtaskUser, setNextIdTaskUser] = useState(1);
   const [nextIdCardTask, setNextIdCardTask] = useState(1);
 
   const [focusedTextarea, setFocusedTextarea] =
@@ -65,16 +65,16 @@ export const CardProvider = ({ children }: { children: React.ReactNode }) => {
 
   {/* Lógica para criar uma nova tarefa */}
   const handleRenderTaskDivs = () => {
-    const contentCardTask: TasksContentInCardTaskProps = {
-      id: nextIdContentCardTask,
-      title: `Tarefa ${nextIdContentCardTask}`,
+    const taskUser: TasksContentInCardTaskProps = {
+      id: nextIdtaskUser,
+      title: `Tarefa ${nextIdtaskUser}`,
       status: "",
     };
 
-    setContentCardTask((prevContent) => [...prevContent, contentCardTask]);
-    setnextIdContentCardTask(prevIdContentCardTask => prevIdContentCardTask + 1);
-    // console.log(nextIdContentCardTask);
-    console.log(contentCardTask);
+    setTaskUser((prevContent) => [...prevContent, taskUser]);
+    setNextIdTaskUser(prevIdtaskUser => prevIdtaskUser + 1);
+    // console.log(nextIdtaskUser);
+    console.log(taskUser);
 
 
   }
@@ -89,7 +89,7 @@ export const CardProvider = ({ children }: { children: React.ReactNode }) => {
     }
 
     if (textareaContent !== "" && textareaMain !== "") {
-      setNumCardTasks((prevCardTask) => [...prevCardTask, createNewCardTask]);
+      setCardTaskUsers((prevCardTask) => [...prevCardTask, createNewCardTask]);
       setNextIdCardTask(prevIdCardTask => prevIdCardTask + 1);
     }
   }
@@ -262,12 +262,12 @@ export const CardProvider = ({ children }: { children: React.ReactNode }) => {
         textareaMainCardRef,
         contentTaskTextareaRef,
         isDropdownOptionsCardTask,
-        numCardTask,
+        cardTaskUser,
         refDivDropdownOptions,
         isContentMainCardEmpty,
         emptyTextareaIndex,
         isContentTaskEmpty,
-        contentCardTask,
+        taskUser,
       }}
     >
       {children}

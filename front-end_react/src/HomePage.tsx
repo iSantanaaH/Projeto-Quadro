@@ -5,7 +5,7 @@ import NavBar from "./components/NavBarComponent/NavBar";
 import { CardContext } from "./components/Context/CardContext";
 
 const HomePage = () => {
-  const { numCardTask } = useContext(CardContext);
+  const { cardTaskUser } = useContext(CardContext);
 
   return (
     <div className={styles.divHomePage}>
@@ -14,7 +14,7 @@ const HomePage = () => {
       </div>
       <div className={styles.componentCardTaskWrapper}>
         <div className={styles.componentCardTask}>
-          {numCardTask.map((task) => (
+          {cardTaskUser.map((task) => (
             <CardTask
              key={task.id}
              />
