@@ -3,8 +3,8 @@ import styles from "../CardTask/CardTask.module.css";
 
 interface CardContextProps {
   handleAddCardTasks: () => void;
-  handleCreateNewDivTask: () => void;
   handleButtonAddContentTask: () => void;
+  handleRenderTaskDivs: () => void;
   handleClickInsideDropdown: (
     event: React.MouseEvent<HTMLButtonElement>
   ) => void;
@@ -24,12 +24,21 @@ interface CardContextProps {
   textareaMainCardRef: React.RefObject<HTMLTextAreaElement>;
   contentTaskTextareaRef: React.RefObject<HTMLTextAreaElement>;
   isDropdownOptionsCardTask: boolean;
-  numCardTask: number;
+  numCardTask: CardTaskProps[];
   refDivDropdownOptions: React.RefObject<HTMLDivElement>;
   isContentMainCardEmpty: boolean;
   emptyTextareaIndex: number | null;
   isContentTaskEmpty: boolean;
-  createNewDivTask: number;
+  contentCardTask: TasksContentInCardTaskProps[];
+}
+
+interface TasksContentInCardTaskProps {
+  id: number;
+  title: string;
+  status: string;
+}
+interface CardTaskProps {
+  id: number;
 }
 
 export const CardContext = createContext({} as CardContextProps);
@@ -37,10 +46,13 @@ export const CardContext = createContext({} as CardContextProps);
 export const CardProvider = ({ children }: { children: React.ReactNode }) => {
   const [isDropdownOptionsCardTask, setIsDropdownOptionsCardTask] =
     useState(false);
-  const [numCardTask, setNumCardTasks] = useState(0);
-  const [createNewDivTask, setIsCreateNewDivTask] = useState(0);
+  const [numCardTask, setNumCardTasks] = useState<CardTaskProps[]>([]);
+  // const [createNewDivTask, setIsCreateNewDivTask] = useState(0);
   const [isContentMainCardEmpty, setIsContentMainCardEmpty] = useState(false);
   const [isContentTaskEmpty, setIsContentTaskEmpty] = useState(true);
+  const [contentCardTask, setContentCardTask] = useState<TasksContentInCardTaskProps[]>([]);
+  const [nextIdContentCardTask, setnextIdContentCardTask] = useState(1);
+  const [nextIdCardTask, setNextIdCardTask] = useState(1);
 
   const [focusedTextarea, setFocusedTextarea] =
     useState<HTMLTextAreaElement | null>(null);
@@ -50,6 +62,36 @@ export const CardProvider = ({ children }: { children: React.ReactNode }) => {
   const [emptyTextareaIndex, setEmptyTextareaIndex] = useState<number | null>(
     null
   );
+
+  const handleRenderTaskDivs = () => {
+    const contentCardTask: TasksContentInCardTaskProps = {
+      id: nextIdContentCardTask,
+      title: `Tarefa ${nextIdContentCardTask}`,
+      status: "",
+ 
+    };
+
+    setContentCardTask((prevContent) => [...prevContent, contentCardTask]);
+    setnextIdContentCardTask(prevIdContentCardTask => prevIdContentCardTask + 1);
+    // console.log(nextIdContentCardTask);
+    console.log(contentCardTask);
+    
+    
+  }
+
+  const handleAddCardTasks = () => {
+    const textareaMain = textareaMainCardRef.current?.value;
+    const textareaContent = contentTaskTextareaRef.current?.value;
+
+    const createNewCardTask: CardTaskProps = {
+      id: nextIdCardTask,
+    }
+
+    if (textareaContent !== "" && textareaMain !== "") {
+      setNumCardTasks((prevCardTask) => [...prevCardTask, createNewCardTask]);
+      setNextIdCardTask(prevIdCardTask => prevIdCardTask + 1);
+    }
+  }
 
   const handleClickInsideDropdown = (
     event: React.MouseEvent<HTMLButtonElement>
@@ -94,15 +136,6 @@ export const CardProvider = ({ children }: { children: React.ReactNode }) => {
       } else {
         textareaMainCardRef.current.focus();
       }
-    }
-  };
-
-  const handleAddCardTasks = () => {
-    const textareaMain = textareaMainCardRef.current?.value;
-    const textareaContent = contentTaskTextareaRef.current?.value;
-
-    if (textareaContent !== "" && textareaMain !== "") {
-      setNumCardTasks((prevNumCardTasks) => prevNumCardTasks + 1);
     }
   };
 
@@ -156,9 +189,7 @@ export const CardProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
-  const handleCreateNewDivTask = () => {
-    setIsCreateNewDivTask(0);
-  };
+  {/*  */ }
 
   const handleButtonAddContentTask = () => {
     const valueMainCard = textareaMainCardRef.current?.value;
@@ -166,12 +197,13 @@ export const CardProvider = ({ children }: { children: React.ReactNode }) => {
 
     if (valueMainCard?.trim() !== "" && valueContentTask?.trim() !== "") {
       setIsContentTaskEmpty(false);
-      handleCreateNewDivTask();
+      handleRenderTaskDivs();
     } else {
       setIsContentTaskEmpty(true);
     }
   };
 
+  {/* Identifica se o card de tarefa está vazio e rendezira o span de erro ao usuário */ }
   const handleChangeTextareaContentTask = (
     event: React.ChangeEvent<HTMLTextAreaElement>
   ) => {
@@ -191,6 +223,7 @@ export const CardProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
+  {/* Impede o enter de quebrar uma linha do card de Tarefas */ }
   const handleKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (event.key === "Enter") {
       event.preventDefault();
@@ -213,14 +246,14 @@ export const CardProvider = ({ children }: { children: React.ReactNode }) => {
     <CardContext.Provider
       value={{
         handleClickInsideDropdown,
-        handleAddCardTasks,
         handleChangeTextareaMainCard,
         handleEmptyMainTitleCard,
+        handleAddCardTasks,
         handleEmptyContentTask,
-        handleChangeTextareaContentTask,
-        handleCreateNewDivTask,
         handleButtonAddContentTask,
+        handleChangeTextareaContentTask,
         handleKeyDown,
+        handleRenderTaskDivs,
         textareaMainCardRef,
         contentTaskTextareaRef,
         isDropdownOptionsCardTask,
@@ -229,7 +262,7 @@ export const CardProvider = ({ children }: { children: React.ReactNode }) => {
         isContentMainCardEmpty,
         emptyTextareaIndex,
         isContentTaskEmpty,
-        createNewDivTask,
+        contentCardTask,
       }}
     >
       {children}

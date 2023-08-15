@@ -20,44 +20,8 @@ const CardTask = () => {
     isContentMainCardEmpty,
     emptyTextareaIndex,
     isContentTaskEmpty,
-    createNewDivTask,
+    contentCardTask,
   } = useContext(CardContext);
-
-  const handleRenderTaskDivs = () => {
-    const taskDivs = [];
-
-    for (let i = 0; i < createNewDivTask; i++) {
-      taskDivs.push(
-        <div key={i} className={styles.taskDivWrapper}>
-          <div
-            className={`${styles.secondMainCardTask} ${
-              isContentTaskEmpty && emptyTextareaIndex === i
-                ? styles.textareaError
-                : ""
-            }`}
-          >
-            <div className={styles.containerDescription}>
-              {isContentTaskEmpty && emptyTextareaIndex === i && (
-                <div className={styles.errorMessageContentTask}>
-                  <span>Campo obrigatório</span>
-                </div>
-              )}
-              <textarea
-                onKeyDown={handleKeyDown}
-                onBlur={handleEmptyContentTask}
-                ref={contentTaskTextareaRef}
-                className={styles.titleTaskUser}
-                autoFocus
-                data-index={i}
-                onChange={handleChangeTextareaContentTask}
-              ></textarea>
-            </div>
-          </div>
-        </div>
-      );
-    }
-    return taskDivs;
-  };
 
   return (
     <div className={styles.flexCardTask}>
@@ -67,9 +31,8 @@ const CardTask = () => {
             <div className={styles.cardHeader}>
               <div className={styles.mainCardHeader}>
                 <div
-                  className={`${styles.containerTitle} ${
-                    isContentMainCardEmpty ? styles.textareaMainCardError : ""
-                  }`}
+                  className={`${styles.containerTitle} ${isContentMainCardEmpty ? styles.textareaMainCardError : ""
+                    }`}
                 >
                   {isContentMainCardEmpty && (
                     <div className={styles.errorMessageMainCard}>
@@ -77,7 +40,6 @@ const CardTask = () => {
                     </div>
                   )}
                   <textarea
-                    id="textCardTask"
                     ref={textareaMainCardRef}
                     onKeyDown={handleKeyDown}
                     onBlur={handleEmptyMainTitleCard}
@@ -128,7 +90,35 @@ const CardTask = () => {
                 </div>
               </div>
             </div>
-            <div className={styles.divOverflow}>{handleRenderTaskDivs()}</div>
+            <div className={styles.divOverflow}>
+              {contentCardTask.map((contentCard) => (
+                <div key={contentCard.id} className={styles.taskDivWrapper}>
+                  <div
+                    className={`${styles.secondMainCardTask} ${isContentTaskEmpty && emptyTextareaIndex === contentCard.id
+                      ? styles.textareaError
+                      : ""
+                      }`}
+                  >
+                    <div className={styles.containerDescription}>
+                      {isContentTaskEmpty && emptyTextareaIndex === contentCard.id && (
+                        <div className={styles.errorMessageContentTask}>
+                          <span>Campo obrigatório</span>
+                        </div>
+                      )}
+                      <textarea
+                        onKeyDown={handleKeyDown}
+                        onBlur={handleEmptyContentTask}
+                        ref={contentTaskTextareaRef}
+                        className={styles.titleTaskUser}
+                        autoFocus
+                        data-index={contentCard.id}
+                        onChange={handleChangeTextareaContentTask}
+                      ></textarea>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
             <div className={styles.cardFooter}>
               <div className={styles.contentAddTask}>
                 <div className={styles.iconBiPlus}></div>

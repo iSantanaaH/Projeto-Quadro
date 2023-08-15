@@ -14,8 +14,10 @@ const HomePage = () => {
       </div>
       <div className={styles.componentCardTaskWrapper}>
         <div className={styles.componentCardTask}>
-          {Array.from({ length: numCardTask }).map((_, index) => (
-            <CardTask key={index} />
+          {numCardTask.map((task) => (
+            <CardTask
+             key={task.id}
+             />
           ))}
         </div>
       </div>
