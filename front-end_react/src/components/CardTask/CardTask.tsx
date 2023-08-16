@@ -3,8 +3,10 @@ import { BiDotsHorizontal, BiPlus } from "react-icons/bi";
 
 import styles from "./CardTask.module.css";
 import { CardContext } from "../Context/CardContext";
+import { TasksContentInCardTaskProps } from '../Context/CardContext';
 
-const CardTask = () => {
+
+const CardTask = ({ tasksForCard, idToCardTask}: { tasksForCard: TasksContentInCardTaskProps[], idToCardTask: number}) => {
   const {
     handleClickInsideDropdown,
     handleChangeTextareaMainCard,
@@ -13,6 +15,7 @@ const CardTask = () => {
     handleChangeTextareaContentTask,
     handleButtonAddContentTask,
     handleKeyDown,
+    handleRenderTaskDivs,
     textareaMainCardRef,
     contentTaskTextareaRef,
     isDropdownOptionsCardTask,
@@ -20,7 +23,6 @@ const CardTask = () => {
     isContentMainCardEmpty,
     emptyTextareaIndex,
     isContentTaskEmpty,
-    taskUser,
   } = useContext(CardContext);
 
   return (
@@ -91,16 +93,16 @@ const CardTask = () => {
               </div>
             </div>
             <div className={styles.divOverflow}>
-              {taskUser.map((contentCard) => (
-                <div key={contentCard.id} className={styles.taskDivWrapper}>
+              {tasksForCard.map((tasksCotenntInList) => (
+                <div key={tasksCotenntInList.id} className={styles.taskDivWrapper}>
                   <div
-                    className={`${styles.secondMainCardTask} ${isContentTaskEmpty && emptyTextareaIndex === contentCard.id
+                    className={`${styles.secondMainCardTask} ${isContentTaskEmpty && emptyTextareaIndex === tasksCotenntInList.id
                       ? styles.textareaError
                       : ""
                       }`}
                   >
                     <div className={styles.containerDescription}>
-                      {isContentTaskEmpty && emptyTextareaIndex === contentCard.id && (
+                      {isContentTaskEmpty && emptyTextareaIndex === tasksCotenntInList.id && (
                         <div className={styles.errorMessageContentTask}>
                           <span>Campo obrigatório</span>
                         </div>
@@ -111,7 +113,7 @@ const CardTask = () => {
                         ref={contentTaskTextareaRef}
                         className={styles.titleTaskUser}
                         autoFocus
-                        data-index={contentCard.id}
+                        data-index={tasksCotenntInList.id}
                         onChange={handleChangeTextareaContentTask}
                       ></textarea>
                     </div>
@@ -128,7 +130,10 @@ const CardTask = () => {
                     type="button"
                     className={styles.buttonAddTask}
                     id="buttonAddTask"
-                    onClick={handleButtonAddContentTask}
+                    onClick={() => {
+                      // handleButtonAddContentTask(idToCardTask);
+                      handleRenderTaskDivs(idToCardTask)
+                    }}
                   >
                     <BiPlus />
                     <span>Adicionar tarefa</span>

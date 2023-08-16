@@ -3,8 +3,8 @@ import styles from "../CardTask/CardTask.module.css";
 
 interface CardContextProps {
   handleAddCardTasks: () => void;
-  handleButtonAddContentTask: () => void;
-  handleRenderTaskDivs: () => void;
+  handleButtonAddContentTask: (idToCardTask: number) => void;
+  handleRenderTaskDivs: (idToCardTask: number) => void;
   handleClickInsideDropdown: (
     event: React.MouseEvent<HTMLButtonElement>
   ) => void;
@@ -32,13 +32,15 @@ interface CardContextProps {
   taskUser: TasksContentInCardTaskProps[];
 }
 
-interface TasksContentInCardTaskProps {
+export interface TasksContentInCardTaskProps {
   id: number;
-  title: string;
-  status: string;
+  title?: string;
+  status?: string;
+  idToCardTask?: number;
 }
 interface CardTaskProps {
   id: number;
+  title: string;
 }
 
 export const CardContext = createContext({} as CardContextProps);
@@ -47,7 +49,6 @@ export const CardProvider = ({ children }: { children: React.ReactNode }) => {
   const [isDropdownOptionsCardTask, setIsDropdownOptionsCardTask] =
     useState(false);
   const [cardTaskUser, setCardTaskUsers] = useState<CardTaskProps[]>([]);
-  // const [createNewDivTask, setIsCreateNewDivTask] = useState(0);
   const [isContentMainCardEmpty, setIsContentMainCardEmpty] = useState(false);
   const [isContentTaskEmpty, setIsContentTaskEmpty] = useState(true);
   const [taskUser, setTaskUser] = useState<TasksContentInCardTaskProps[]>([]);
@@ -64,19 +65,17 @@ export const CardProvider = ({ children }: { children: React.ReactNode }) => {
   );
 
   {/* Lógica para criar uma nova tarefa */}
-  const handleRenderTaskDivs = () => {
+  const handleRenderTaskDivs = (idToCardTask: number) => {
     const taskUser: TasksContentInCardTaskProps = {
       id: nextIdtaskUser,
       title: `Tarefa ${nextIdtaskUser}`,
       status: "",
+      idToCardTask: idToCardTask,
     };
 
     setTaskUser((prevContent) => [...prevContent, taskUser]);
     setNextIdTaskUser(prevIdtaskUser => prevIdtaskUser + 1);
-    // console.log(nextIdtaskUser);
     console.log(taskUser);
-
-
   }
 
   {/* Cria um novo quadro de tarefas */}
@@ -84,12 +83,13 @@ export const CardProvider = ({ children }: { children: React.ReactNode }) => {
     const textareaMain = textareaMainCardRef.current?.value;
     const textareaContent = contentTaskTextareaRef.current?.value;
 
-    const createNewCardTask: CardTaskProps = {
+    const cardTaskUser: CardTaskProps = {
       id: nextIdCardTask,
+      title: "",
     }
 
     if (textareaContent !== "" && textareaMain !== "") {
-      setCardTaskUsers((prevCardTask) => [...prevCardTask, createNewCardTask]);
+      setCardTaskUsers((prevCardTask) => [...prevCardTask, cardTaskUser]);
       setNextIdCardTask(prevIdCardTask => prevIdCardTask + 1);
     }
   }
@@ -197,13 +197,13 @@ export const CardProvider = ({ children }: { children: React.ReactNode }) => {
 
   {/* Função que cria uma nova tarefa */ }
 
-  const handleButtonAddContentTask = () => {
+  const handleButtonAddContentTask = (idToCardTask: number) => {
     const valueMainCard = textareaMainCardRef.current?.value;
     const valueContentTask = contentTaskTextareaRef.current?.value;
 
     if (valueMainCard?.trim() !== "" && valueContentTask?.trim() !== "") {
       setIsContentTaskEmpty(false);
-      handleRenderTaskDivs();
+      handleRenderTaskDivs(idToCardTask);
     } else {
       setIsContentTaskEmpty(true);
     }
