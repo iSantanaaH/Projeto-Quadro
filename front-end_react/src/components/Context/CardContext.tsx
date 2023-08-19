@@ -3,7 +3,6 @@ import styles from "../CardTask/CardTask.module.css";
 
 interface CardContextProps {
   handleAddCardTasks: () => void;
-  handleButtonAddContentTask: (idToCardTask: number) => void;
   handleRenderTaskDivs: (idToCardTask: number) => void;
   handleClickInsideDropdown: (
     event: React.MouseEvent<HTMLButtonElement>
@@ -40,7 +39,7 @@ export interface TasksContentInCardTaskProps {
 }
 interface CardTaskProps {
   id: number;
-  title: string;
+  idMainTitleListTask: number;
 }
 
 export const CardContext = createContext({} as CardContextProps);
@@ -52,7 +51,7 @@ export const CardProvider = ({ children }: { children: React.ReactNode }) => {
   const [isContentMainCardEmpty, setIsContentMainCardEmpty] = useState(false);
   const [isContentTaskEmpty, setIsContentTaskEmpty] = useState(true);
   const [taskUser, setTaskUser] = useState<TasksContentInCardTaskProps[]>([]);
-  const [nextIdtaskUser, setNextIdTaskUser] = useState(1);
+  const [nextIdTaskUser, setNextIdTaskUser] = useState(1);
   const [nextIdCardTask, setNextIdCardTask] = useState(1);
 
   const [focusedTextarea, setFocusedTextarea] =
@@ -67,15 +66,19 @@ export const CardProvider = ({ children }: { children: React.ReactNode }) => {
   {/* Lógica para criar uma nova tarefa */}
   const handleRenderTaskDivs = (idToCardTask: number) => {
     const taskUser: TasksContentInCardTaskProps = {
-      id: nextIdtaskUser,
-      title: `Tarefa ${nextIdtaskUser}`,
+      id: nextIdTaskUser,
+      title: `Tarefa ${nextIdTaskUser}`,
       status: "",
       idToCardTask: idToCardTask,
     };
 
-    setTaskUser((prevContent) => [...prevContent, taskUser]);
-    setNextIdTaskUser(prevIdtaskUser => prevIdtaskUser + 1);
-    console.log(taskUser);
+    const mainTitleListTask = textareaMainCardRef.current?.value;
+    const taskUserContentList = contentTaskTextareaRef.current?.value;
+
+    if (mainTitleListTask?.trim() !== "" && taskUserContentList?.trim() !== "") {
+      setTaskUser((prevContent) => [...prevContent, taskUser]);
+      setNextIdTaskUser(prevIdtaskUser => prevIdtaskUser + 1);
+    }
   }
 
   {/* Cria um novo quadro de tarefas */}
@@ -85,13 +88,13 @@ export const CardProvider = ({ children }: { children: React.ReactNode }) => {
 
     const cardTaskUser: CardTaskProps = {
       id: nextIdCardTask,
-      title: "",
+      idMainTitleListTask: 1,
     }
 
     if (textareaContent !== "" && textareaMain !== "") {
       setCardTaskUsers((prevCardTask) => [...prevCardTask, cardTaskUser]);
       setNextIdCardTask(prevIdCardTask => prevIdCardTask + 1);
-    }
+    }    
   }
 
   {/* Recebe o clique do usuário no botão da dropdown e mostra as opções */}
@@ -195,20 +198,6 @@ export const CardProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
-  {/* Função que cria uma nova tarefa */ }
-
-  const handleButtonAddContentTask = (idToCardTask: number) => {
-    const valueMainCard = textareaMainCardRef.current?.value;
-    const valueContentTask = contentTaskTextareaRef.current?.value;
-
-    if (valueMainCard?.trim() !== "" && valueContentTask?.trim() !== "") {
-      setIsContentTaskEmpty(false);
-      handleRenderTaskDivs(idToCardTask);
-    } else {
-      setIsContentTaskEmpty(true);
-    }
-  };
-
   {/* Identifica se o card de tarefa está vazio e rendezira o span de erro ao usuário */ }
   const handleChangeTextareaContentTask = (
     event: React.ChangeEvent<HTMLTextAreaElement>
@@ -255,7 +244,6 @@ export const CardProvider = ({ children }: { children: React.ReactNode }) => {
         handleEmptyMainTitleCard,
         handleAddCardTasks,
         handleEmptyContentTask,
-        handleButtonAddContentTask,
         handleChangeTextareaContentTask,
         handleKeyDown,
         handleRenderTaskDivs,

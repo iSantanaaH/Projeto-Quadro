@@ -13,7 +13,6 @@ const CardTask = ({ tasksForCard, idToCardTask}: { tasksForCard: TasksContentInC
     handleEmptyMainTitleCard,
     handleEmptyContentTask,
     handleChangeTextareaContentTask,
-    handleButtonAddContentTask,
     handleKeyDown,
     handleRenderTaskDivs,
     textareaMainCardRef,
@@ -130,10 +129,7 @@ const CardTask = ({ tasksForCard, idToCardTask}: { tasksForCard: TasksContentInC
                     type="button"
                     className={styles.buttonAddTask}
                     id="buttonAddTask"
-                    onClick={() => {
-                      // handleButtonAddContentTask(idToCardTask);
-                      handleRenderTaskDivs(idToCardTask)
-                    }}
+                    onClick={() => handleRenderTaskDivs(idToCardTask)}
                   >
                     <BiPlus />
                     <span>Adicionar tarefa</span>
